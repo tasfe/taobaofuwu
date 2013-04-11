@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using RCSoft.Core.Infrastructure;
 using RCSoft.Core.Data;
-using RCSoft.Web.Framework.Mvc.Routes;
-using RCSoft.Web.Framework.Mvc;
 using RCSoft.Core;
+using RCSoft.Web.Framework.Mvc;
+using RCSoft.Web.Framework.Mvc.Routes;
 
 namespace RCSoft.Web
 {
+    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
+    // visit http://go.microsoft.com/?LinkId=9394801
+
     public class MvcApplication : System.Web.HttpApplication
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
-        { 
-            
+        {
+
         }
 
         public static void RegisterRouters(RouteCollection routes)
@@ -32,8 +37,27 @@ namespace RCSoft.Web
                 new[] { "RCSoft.Web.Controllers" }
                 );
         }
+        #region MyRegion
+		
+        //public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+        //{
+        //    filters.Add(new HandleErrorAttribute());
+        //}
 
-        protected void Application_Start(object sender, EventArgs e)
+        //public static void RegisterRoutes(RouteCollection routes)
+        //{
+        //    routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+        //    routes.MapRoute(
+        //        "Default", // Route name
+        //        "{controller}/{action}/{id}", // URL with parameters
+        //        new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+        //    );
+
+        //} 
+	#endregion
+
+        protected void Application_Start()
         {
             //初始化引擎上下文
             EngineContext.Initialize(false);
@@ -50,16 +74,14 @@ namespace RCSoft.Web
 
             RegisterRouters(RouteTable.Routes);
         }
-
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
             EnsureDatabaseIsInstalled();
         }
-
         private void EnsureDatabaseIsInstalled()
         {
             var webHelper = EngineContext.Current.Resolve<IWebHelper>();
-            string installUrl = string.Format("{0}install", webHelper.GetStoreLocation());
+            string installUrl = string.Format("{0}Install", webHelper.GetStoreLocation());
             if (!webHelper.IsStaticResource(this.Request) &&
                 !DataSettingsHelper.DatabaseIsInstalled() &&
                 !webHelper.GetThisPageUrl(false).StartsWith(installUrl, StringComparison.InvariantCultureIgnoreCase))
@@ -67,32 +89,5 @@ namespace RCSoft.Web
                 this.Response.Redirect(installUrl);
             }
         }
-        void Application_End(object sender, EventArgs e)
-        {
-            //  Code that runs on application shutdown
-
-        }
-
-        void Application_Error(object sender, EventArgs e)
-        {
-            // Code that runs when an unhandled error occurs
-
-        }
-
-        void Session_Start(object sender, EventArgs e)
-        {
-            // Code that runs when a new session is started
-
-        }
-
-        void Session_End(object sender, EventArgs e)
-        {
-            // Code that runs when a session ends. 
-            // Note: The Session_End event is raised only when the sessionstate mode
-            // is set to InProc in the Web.config file. If session mode is set to StateServer 
-            // or SQLServer, the event is not raised.
-
-        }
-
     }
 }
