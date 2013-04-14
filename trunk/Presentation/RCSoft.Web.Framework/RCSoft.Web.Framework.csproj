@@ -62,11 +62,13 @@
     <Compile Include="Localization\LocalizedRoute.cs" />
     <Compile Include="Localization\LocalizedRouteExtensions.cs" />
     <Compile Include="Localization\LocalizedUrlExtenstions.cs" />
+    <Compile Include="Mvc\BaseModel.cs" />
     <Compile Include="Mvc\RCSoftDependencyResolver.cs" />
     <Compile Include="Mvc\Routes\IRouteProvider.cs" />
     <Compile Include="Mvc\Routes\IRoutePublisher.cs" />
     <Compile Include="Mvc\Routes\RoutePublisher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\NotifyType.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Libraries\RCSoft.Core\RCSoft.Core.csproj">

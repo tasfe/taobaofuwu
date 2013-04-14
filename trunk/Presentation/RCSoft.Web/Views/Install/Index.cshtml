@@ -1,5 +1,17 @@
 ﻿@{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
+@model InstallModel
+@using RCSoft.Core.Infrastructure;
+@using RCSoft.Web.Models.Install;
+@using RCSoft.Web.Infrastructure.Installation;
+@{
+    var InstallLocService = EngineContext.Current.Resolve<IInstallationLocalizationService>();   
+ }
+<div style="width:900px; text-align:center"><h2>数据库初始化安装</h2></div>
+<table>
+    <tr>
+        <td><label for="AdminUser">@InstallLocService.GetResource("AdminUser")：</label></td>
+        <td></td>
+    </tr>
+</table>

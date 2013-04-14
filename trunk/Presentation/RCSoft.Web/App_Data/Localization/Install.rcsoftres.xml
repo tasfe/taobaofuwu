@@ -1,0 +1,8 @@
+﻿<Install>
+  <LocalResource Name="AdminUser">
+    <Value>初始用户</Value>
+  </LocalResource>
+  <LocalResource Name="AdminUserRequired">
+    <Value>输入初始用户</Value>
+  </LocalResource>
+</Install>
