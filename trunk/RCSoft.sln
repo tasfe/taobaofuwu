@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCSoft.Web.Framework", "Pre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCSoft.Web", "Presentation\RCSoft.Web\RCSoft.Web.csproj", "{164BD251-0156-4C5B-BFDA-FAF1B9B635E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCSoft.Services", "RCSoft.Services\RCSoft.Services.csproj", "{5376374C-3D28-4FFF-B606-86D2F8685B70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCSoft.Services", "Libraries\RCSoft.Services\RCSoft.Services.csproj", "{5376374C-3D28-4FFF-B606-86D2F8685B70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

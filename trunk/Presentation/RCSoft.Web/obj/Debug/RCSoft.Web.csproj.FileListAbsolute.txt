@@ -25,3 +25,6 @@ E:\RCSoft\RCSoft\Presentation\RCSoft.Web\bin\Autofac.xml
 E:\RCSoft\RCSoft\Presentation\RCSoft.Web\obj\Debug\ResolveAssemblyReference.cache
 E:\RCSoft\RCSoft\Presentation\RCSoft.Web\obj\Debug\RCSoft.Web.dll
 E:\RCSoft\RCSoft\Presentation\RCSoft.Web\obj\Debug\RCSoft.Web.pdb
+E:\DemoProject\RCSoft\新建文件夹\Presentation\RCSoft.Web\obj\Debug\ResolveAssemblyReference.cache
+E:\DemoProject\RCSoft\新建文件夹\Presentation\RCSoft.Web\obj\Debug\RCSoft.Web.dll
+E:\DemoProject\RCSoft\新建文件夹\Presentation\RCSoft.Web\obj\Debug\RCSoft.Web.pdb

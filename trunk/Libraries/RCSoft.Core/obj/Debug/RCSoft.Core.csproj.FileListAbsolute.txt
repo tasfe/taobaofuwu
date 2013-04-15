@@ -17,3 +17,11 @@ E:\RCSoft\RCSoft\Libraries\RCSoft.Core\bin\Debug\Autofac.xml
 E:\RCSoft\RCSoft\Libraries\RCSoft.Core\obj\Debug\ResolveAssemblyReference.cache
 E:\RCSoft\RCSoft\Libraries\RCSoft.Core\obj\Debug\RCSoft.Core.dll
 E:\RCSoft\RCSoft\Libraries\RCSoft.Core\obj\Debug\RCSoft.Core.pdb
+E:\DemoProject\RCSoft\新建文件夹\Libraries\RCSoft.Core\bin\Debug\RCSoft.Core.dll
+E:\DemoProject\RCSoft\新建文件夹\Libraries\RCSoft.Core\bin\Debug\RCSoft.Core.pdb
+E:\DemoProject\RCSoft\新建文件夹\Libraries\RCSoft.Core\bin\Debug\Autofac.dll
+E:\DemoProject\RCSoft\新建文件夹\Libraries\RCSoft.Core\bin\Debug\Autofac.Integration.Mvc.dll
+E:\DemoProject\RCSoft\新建文件夹\Libraries\RCSoft.Core\bin\Debug\Autofac.xml
+E:\DemoProject\RCSoft\新建文件夹\Libraries\RCSoft.Core\obj\Debug\ResolveAssemblyReference.cache
+E:\DemoProject\RCSoft\新建文件夹\Libraries\RCSoft.Core\obj\Debug\RCSoft.Core.dll
+E:\DemoProject\RCSoft\新建文件夹\Libraries\RCSoft.Core\obj\Debug\RCSoft.Core.pdb
