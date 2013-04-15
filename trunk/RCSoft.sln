@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCSoft.Web.Framework", "Pre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCSoft.Web", "Presentation\RCSoft.Web\RCSoft.Web.csproj", "{164BD251-0156-4C5B-BFDA-FAF1B9B635E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCSoft.Services", "Libraries\RCSoft.Services\RCSoft.Services.csproj", "{5376374C-3D28-4FFF-B606-86D2F8685B70}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,17 +29,12 @@ Global
 		{164BD251-0156-4C5B-BFDA-FAF1B9B635E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{164BD251-0156-4C5B-BFDA-FAF1B9B635E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{164BD251-0156-4C5B-BFDA-FAF1B9B635E1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5376374C-3D28-4FFF-B606-86D2F8685B70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5376374C-3D28-4FFF-B606-86D2F8685B70}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5376374C-3D28-4FFF-B606-86D2F8685B70}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5376374C-3D28-4FFF-B606-86D2F8685B70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CEF80135-DB6D-489A-AF06-35EAC345033B} = {2B7ED2C7-A20F-41A2-BDA5-9C8B979B8B6F}
-		{5376374C-3D28-4FFF-B606-86D2F8685B70} = {2B7ED2C7-A20F-41A2-BDA5-9C8B979B8B6F}
 		{1F243CA8-1497-44FA-B296-09EFE1B43F79} = {6F62F72E-5F0A-499A-99BE-A099C7CA7DBF}
 		{164BD251-0156-4C5B-BFDA-FAF1B9B635E1} = {6F62F72E-5F0A-499A-99BE-A099C7CA7DBF}
 	EndGlobalSection
