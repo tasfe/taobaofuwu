@@ -5,4 +5,49 @@
   <LocalResource Name="AdminUserRequired">
     <Value>输入初始用户</Value>
   </LocalResource>
+  <LocalResource Name="AdminPassword">
+    <Value>密码：</Value>
+  </LocalResource>
+  <LocalResource Name="AdminPasswordRequired">
+    <Value>请输入密码</Value>
+  </LocalResource>
+  <LocalResource Name="ConfirmPassword">
+    <Value>确认密码</Value>
+  </LocalResource>
+  <LocalResource Name="ComfirmPasswordRequired">
+    <Value>请输入确认密码</Value>
+  </LocalResource>
+  <LocalResource Name="SqlServerName">
+    <Value>SQL服务器名称</Value>
+  </LocalResource>
+  <LocalResource Name="SqlServerNameRequired">
+    <Value>输入SQL服务器名称</Value>
+  </LocalResource>
+  <LocalResource Name="DataBaseName">
+    <Value>数据库名称</Value>
+  </LocalResource>
+  <LocalResource Name="DataBaseNameRequired">
+    <Value>输入数据库名称</Value>
+  </LocalResource>
+  <LocalResource Name="SqlServerUserName">
+    <Value>SQL登录名</Value>
+  </LocalResource>
+  <LocalResource Name="SqlServerUserNameRequired">
+    <Value>输入SQL登录名</Value>
+  </LocalResource>
+  <LocalResource Name="SQLServerPassword">
+    <Value>SQLServer密码</Value>
+  </LocalResource>
+  <LocalResource Name="SQLServerPasswordRequired">
+    <Value>输入SQLServer密码</Value>
+  </LocalResource>
+  <LocalResource Name="CreateDemoData">
+    <Value>创建演示数据</Value>
+  </LocalResource>
+  <LocalResource Name="Install">
+    <Value>开始安装</Value>
+  </LocalResource>
+  <LocalResource Name="Title">
+    <Value>数据库初始化安装</Value>
+  </LocalResource>
 </Install>

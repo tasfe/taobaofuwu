@@ -8,10 +8,48 @@
 @{
     var InstallLocService = EngineContext.Current.Resolve<IInstallationLocalizationService>();   
  }
-<div style="width:900px; text-align:center"><h2>数据库初始化安装</h2></div>
-<table>
-    <tr>
-        <td><label for="AdminUser">@InstallLocService.GetResource("AdminUser")：</label></td>
-        <td></td>
-    </tr>
-</table>
+ @using (Html.BeginForm("Index", "Install", FormMethod.Post, new { id = "installtion-form" }))
+ {
+    <div style="width:900px; text-align:center"><h2>@InstallLocService.GetResource("Title")</h2></div>
+    <table style="width:900px;">
+        <tr>
+            <td style="width:20%; text-align:right;"><label for="AdminUser">@InstallLocService.GetResource("AdminUser")：</label></td>
+            <td style="text-align:left;">@Html.TextBoxFor(x => x.AdminEmail, new { @class = "textbox" })</td>
+        </tr>
+        <tr>
+            <td style="text-align:right;><label for="Password">@InstallLocService.GetResource("AdminPassword")</label></td>
+            <td style="text-align:left;">@Html.PasswordFor(x=>x.AdminPassword,new { @class = "textbox" })</td>
+        </tr>
+        <tr>
+            <td style="text-align:right;><label for="ConfirmPassword">@InstallLocService.GetResource("ConfirmPassword")</label></td>
+            <td style="text-align:left;">@Html.PasswordFor(x=>x.ConfirmPassword,new { @class = "textbox" })</td>
+        </tr>
+        <tr>
+            <td style="text-align:right;><label for="Password">@InstallLocService.GetResource("ConfirmPassword")</label></td>
+            <td style="text-align:left;">@Html.PasswordFor(x=>x.ConfirmPassword,new { @class = "textbox" })</td>
+        </tr>
+        <tr>
+            <td style="text-align:right;><label for="CreateDemoData">@InstallLocService.GetResource("CreateDemoData")</label></td>
+            <td style="text-align:left;">@Html.CheckBoxFor(x=>x.InstallSampleData,new { @class = "textbox" })</td>
+        </tr>
+        <tr>
+            <td style="text-align:right;><label for="SQLServerName">@InstallLocService.GetResource("SqlServerName")</label></td>
+            <td style="text-align:left;">@Html.TextBoxFor(x=>x.SqlServerName,new { @class = "textbox" })</td>
+        </tr>
+        <tr>
+            <td style="text-align:right;><label for="DataBaseName">@InstallLocService.GetResource("DataBaseName")</label></td>
+            <td style="text-align:left;">@Html.TextBoxFor(x=>x.SqlDatabaseName,new { @class = "textbox" })</td>
+        </tr>
+        <tr>
+            <td style="text-align:right;><label for="SQLServerUserName">@InstallLocService.GetResource("SqlServerUserName")</label></td>
+            <td style="text-align:left;">@Html.TextBoxFor(x=>x.SqlServerUsername,new { @class = "textbox" })</td>
+        </tr>
+        <tr>
+            <td style="text-align:right;><label for="SQLServerPassword">@InstallLocService.GetResource("SQLServerPassword")</label></td>
+            <td style="text-align:left;">@Html.TextBoxFor(x=>x.SqlServerPassword,new { @class = "textbox" })</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center"><input type="submit" value="@InstallLocService.GetResource("Install")" style="width:100px;" /></td>
+        </tr>
+    </table>
+ }

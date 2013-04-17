@@ -37,7 +37,7 @@ namespace RCSoft.Web.Infrastructure.Installation
                     var xmlDocument = new XmlDocument();
                     xmlDocument.Load(filePath);
 
-                    foreach (XmlNode resNode in xmlDocument.SelectNodes(@"//Install/LocaleResource"))
+                    foreach (XmlNode resNode in xmlDocument.SelectNodes(@"//Install/LocalResource"))
                     {
                         var resNameAttribute = resNode.Attributes["Name"];
                         var resValueNode = resNode.SelectSingleNode("Value");
