@@ -26,7 +26,7 @@ namespace RCSoft.Web.Models.Install
         public string ConfirmPassword { get; set; }
         [AllowHtml]
         public string DatabaseConnectionString { get; set; }
-        public string DataProvider { get; set; }
+        
         //SQL Server properties
         public string SqlConnectionInfo { get; set; }
         [AllowHtml]
@@ -39,11 +39,6 @@ namespace RCSoft.Web.Models.Install
         public string SqlServerPassword { get; set; }
         public string SqlAuthenticationType { get; set; }
         public bool SqlServerCreateDatabase { get; set; }
-
-        public bool UseCustomCollation { get; set; }
-        [AllowHtml]
-        public string Collation { get; set; }
-
 
         public bool InstallSampleData { get; set; }
     }

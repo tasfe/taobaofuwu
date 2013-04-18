@@ -5,6 +5,9 @@
   <LocalResource Name="AdminUserRequired">
     <Value>输入初始用户</Value>
   </LocalResource>
+  <LocalResource Name="AdminMailValid">
+    <Value>用户名为电子邮件格式，电子邮件输入有误</Value>
+  </LocalResource>
   <LocalResource Name="AdminPassword">
     <Value>密码：</Value>
   </LocalResource>
@@ -16,6 +19,9 @@
   </LocalResource>
   <LocalResource Name="ComfirmPasswordRequired">
     <Value>请输入确认密码</Value>
+  </LocalResource>
+  <LocalResource Name="PasswordsDoNotMatch">
+    <Value>两次输入的密码不同</Value>
   </LocalResource>
   <LocalResource Name="SqlServerName">
     <Value>SQL服务器名称</Value>
@@ -52,5 +58,11 @@
   </LocalResource>
   <LocalResource Name="Title">
     <Value>数据库初始化安装</Value>
+  </LocalResource>
+  <LocalResource Name="DatabaseCreationError">
+    <Value>创建数据库发生"{0}"错误.</Value>
+  </LocalResource>
+  <LocalResource Name="SetupFailed">
+    <Value>安装失败: {0}</Value>
   </LocalResource>
 </Install>
