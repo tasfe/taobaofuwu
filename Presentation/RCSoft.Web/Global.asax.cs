@@ -9,6 +9,8 @@ using RCSoft.Core.Data;
 using RCSoft.Core;
 using RCSoft.Web.Framework.Mvc;
 using RCSoft.Web.Framework.Mvc.Routes;
+using FluentValidation.Mvc;
+using RCSoft.Web.Framework;
 
 namespace RCSoft.Web
 {
@@ -73,6 +75,8 @@ namespace RCSoft.Web
             }
 
             RegisterRouters(RouteTable.Routes);
+            DataAnnotationsModelValidatorProvider.AddImplicitRequiredAttributeForValueTypes = false;
+            ModelValidatorProviders.Providers.Add(new FluentValidationModelValidatorProvider(new RCSoftValidatorFactory()));
         }
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
