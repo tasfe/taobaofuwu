@@ -32,6 +32,7 @@ namespace RCSoft.Web.Framework
 
             builder.RegisterType<WebHelper>().As<IWebHelper>().InstancePerHttpRequest();
             builder.RegisterType<RoutePublisher>().As<IRoutePublisher>().SingleInstance();
+            builder.RegisterControllers(typeFinder.GetAssemblies().ToArray());
         }
 
         public int Order

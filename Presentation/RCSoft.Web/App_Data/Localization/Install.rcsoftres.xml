@@ -47,6 +47,9 @@
   <LocalResource Name="Install">
     <Value>开始安装</Value>
   </LocalResource>
+  <LocalResource Name="Installing">
+        <Value>开始安装</Value>
+  </LocalResource>
   <LocalResource Name="Title">
     <Value>数据库初始化安装</Value>
   </LocalResource>

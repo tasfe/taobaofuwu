@@ -10,7 +10,21 @@
  }
  @using (Html.BeginForm("Index", "Install", FormMethod.Post, new { id = "installtion-form" }))
  {
+     <script type="text/javascript">
+            $(document).ready(function () {
+                $('#installation-form').submit(function () {
+                    if ($('#installation-form').valid()) {
+                        window.setTimeout(function () {
+                            $(".throbber").show();
+                        }, 1000);
+
+                        $('input[type=submit]', this).attr('disabled', 'disabled');
+                    }
+                });
+            });
+    </script>
     <div style="width:900px; text-align:center"><h2>@InstallLocService.GetResource("Title")</h2></div>
+     <div style="width:800px; color:Red;">@Html.ValidationSummary(false)</div>
     <table style="width:900px;">
         <tr>
             <td style="width:20%; text-align:right;"><label for="AdminUser">@InstallLocService.GetResource("AdminUser")：</label></td>
@@ -52,4 +66,17 @@
             <td colspan="2" style="text-align:center"><input type="submit" value="@InstallLocService.GetResource("Install")" style="width:100px;" /></td>
         </tr>
     </table>
+     <div class="throbber">
+            <div class="curtain">
+            </div>
+            <div class="curtain-content">
+                <div>
+                    <h1 class="throbber-header">
+                        @InstallLocService.GetResource("Installing")</h1>
+                    <p>
+                        <img src="@Url.Content("~/content/images/install-synchronizing.gif")" alt="" />
+                    </p>
+                </div>
+            </div>
+        </div>
  }
