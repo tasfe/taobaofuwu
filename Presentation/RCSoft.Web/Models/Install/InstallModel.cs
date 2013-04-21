@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using FluentValidation.Attributes;
+﻿using FluentValidation.Attributes;
 using RCSoft.Web.Validators.Install;
 using RCSoft.Web.Framework.Mvc;
 using System.Web.Mvc;
@@ -11,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 namespace RCSoft.Web.Models.Install
 {
     [Validator(typeof(InstallValidator))]
-    public partial class InstallModel:BaseModel
+    public partial class InstallModel : BaseModel
     {
         public InstallModel()
         { 

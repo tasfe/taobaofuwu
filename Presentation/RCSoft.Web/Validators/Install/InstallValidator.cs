@@ -4,7 +4,7 @@ using RCSoft.Web.Infrastructure.Installation;
 
 namespace RCSoft.Web.Validators.Install
 {
-    public class InstallValidator:AbstractValidator<InstallModel>
+    public class InstallValidator : AbstractValidator<InstallModel>
     {
         public InstallValidator(IInstallationLocalizationService locService)
         {
