@@ -68,12 +68,14 @@ namespace RCSoft.Web
             var dependencyResolver = new RCSoftDependencyResolver();
             DependencyResolver.SetResolver(dependencyResolver);
 
+            ModelBinders.Binders.Add(typeof(BaseModel), new RCSoftModelBinder());
             if (databaseInstalled)
             {
                 ViewEngines.Engines.Clear();
                 //ViewEngines.Engines.Add(new ThemeableRazorViewEngine());
             }
-
+            ModelMetadataProviders.Current = new RCSoftMetadataProvider();
+            AreaRegistration.RegisterAllAreas();
             RegisterRouters(RouteTable.Routes);
             DataAnnotationsModelValidatorProvider.AddImplicitRequiredAttributeForValueTypes = false;
             ModelValidatorProviders.Providers.Add(new FluentValidationModelValidatorProvider(new RCSoftValidatorFactory()));

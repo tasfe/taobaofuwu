@@ -1,14 +1,12 @@
-﻿@{
-    ViewBag.Title = "Index";
-}
-@model InstallModel
+﻿@model InstallModel
 @using RCSoft.Core.Infrastructure;
 @using RCSoft.Web.Models.Install;
 @using RCSoft.Web.Infrastructure.Installation;
 @{
-    var InstallLocService = EngineContext.Current.Resolve<IInstallationLocalizationService>();   
+    var InstallLocService = EngineContext.Current.Resolve<IInstallationLocalizationService>();
+    ViewBag.Title = InstallLocService.GetResource("Title");
  }
- @using (Html.BeginForm("Index", "Install", FormMethod.Post, new { id = "installtion-form" }))
+ @using (Html.BeginForm("Index", "Install", FormMethod.Post, new { id = "installation-form" }))
  { 
      <script type="text/javascript">
             $(document).ready(function () {
