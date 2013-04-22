@@ -9,7 +9,7 @@
     <Value>用户名为电子邮件格式，电子邮件输入有误</Value>
   </LocalResource>
   <LocalResource Name="AdminPassword">
-    <Value>密码：</Value>
+    <Value>密码</Value>
   </LocalResource>
   <LocalResource Name="AdminPasswordRequired">
     <Value>请输入密码</Value>
