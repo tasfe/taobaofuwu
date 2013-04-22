@@ -54,6 +54,8 @@ namespace RCSoft.Web.Controllers
                     settingsManager.SaveSettings(settings);
 
                     DataSettingsHelper.ResetCache();
+
+                    return RedirectToRoute("HomePage");
                 }
                 catch (Exception exception)
                 {

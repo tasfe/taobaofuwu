@@ -24,15 +24,15 @@
      <div style="width:800px; color:Red;">@Html.ValidationSummary(false)</div>
     <table style="width:900px;">
         <tr>
-            <td style="width:20%; text-align:right;"><label for="AdminUser">@InstallLocService.GetResource("AdminUser")：</label></td>
+            <td style="width:20%; text-align:right;"><label for="AdminUser">@InstallLocService.GetResource("AdminUser"):</label></td>
             <td style="text-align:left;">@Html.TextBoxFor(x => x.AdminEmail, new { @class = "textbox" })</td>
         </tr>
         <tr>
-            <td style="text-align:right;"><label for="Password">@InstallLocService.GetResource("AdminPassword")：</label></td>
+            <td style="text-align:right;"><label for="Password">@InstallLocService.GetResource("AdminPassword"):</label></td>
             <td style="text-align:left;">@Html.PasswordFor(x => x.AdminPassword, new { @class = "textbox" })</td>
         </tr>
         <tr>
-            <td style="text-align:right;"><label for="ConfirmPassword">@InstallLocService.GetResource("ConfirmPassword")：</label></td>
+            <td style="text-align:right;"><label for="ConfirmPassword">@InstallLocService.GetResource("ConfirmPassword"):</label></td>
             <td style="text-align:left;">@Html.PasswordFor(x => x.ConfirmPassword, new { @class = "textbox" })</td>
         </tr>
         <tr>
