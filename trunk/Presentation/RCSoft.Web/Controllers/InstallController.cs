@@ -32,14 +32,6 @@ namespace RCSoft.Web.Controllers
         [HttpPost]
         public ActionResult Index(InstallModel model)
         {
-            if (string.IsNullOrEmpty(model.SqlServerName))
-                ModelState.AddModelError("", _locService.GetResource("SqlServerNameRequired"));
-            if (string.IsNullOrEmpty(model.SqlDatabaseName))
-                ModelState.AddModelError("", _locService.GetResource("DataBaseNameRequired"));
-            if (string.IsNullOrEmpty(model.SqlServerUsername))
-                ModelState.AddModelError("", _locService.GetResource("SqlServerUserNameRequired"));
-            if (string.IsNullOrEmpty(model.SqlServerPassword))
-                ModelState.AddModelError("", _locService.GetResource("SQLServerPasswordRequired"));
             if (ModelState.IsValid)
             {
                 var settingsManager = new DataSettingsManager();
