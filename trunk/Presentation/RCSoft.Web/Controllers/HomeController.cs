@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace RCSoft.Web.Controllers
 {
-    public partial class HomeController:BaseController
+    public partial class HomeController : BaseController
     {
         public ActionResult Index()
         {
