@@ -31,7 +31,7 @@ namespace RCSoft.Web
 
             var routePublisher = EngineContext.Current.Resolve<IRoutePublisher>();
             routePublisher.RegisterRoutes(routes);
-
+            //设置默认的路由地址，Application启动时默认首页
             routes.MapRoute(
                 "Default",//路由名称
                 "{controller}/{action}/{id}",//带参数的URL
@@ -71,12 +71,14 @@ namespace RCSoft.Web
             ModelBinders.Binders.Add(typeof(BaseModel), new RCSoftModelBinder());
             if (databaseInstalled)
             {
-                ViewEngines.Engines.Clear();
+                //ViewEngines.Engines.Clear();
                 //ViewEngines.Engines.Add(new ThemeableRazorViewEngine());
             }
             ModelMetadataProviders.Current = new RCSoftMetadataProvider();
             AreaRegistration.RegisterAllAreas();
+            //注册路由信息
             RegisterRouters(RouteTable.Routes);
+            //使用FluentValidation插件
             DataAnnotationsModelValidatorProvider.AddImplicitRequiredAttributeForValueTypes = false;
             ModelValidatorProviders.Providers.Add(new FluentValidationModelValidatorProvider(new RCSoftValidatorFactory()));
         }
