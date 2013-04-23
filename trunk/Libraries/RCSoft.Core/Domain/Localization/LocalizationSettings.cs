@@ -3,7 +3,7 @@ using RCSoft.Core.Configuration;
 
 namespace RCSoft.Core.Domain.Localization
 {
-    public class LocalizationSettings:ISettings
+    public class LocalizationSettings : ISettings
     {
         public int DefaultAdminLanguageId { get; set; }
 
