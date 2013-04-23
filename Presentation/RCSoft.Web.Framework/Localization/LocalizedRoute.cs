@@ -7,7 +7,7 @@ using RCSoft.Core.Domain.Localization;
 
 namespace RCSoft.Web.Framework.Localization
 {
-    public class LocalizedRoute:Route
+    public class LocalizedRoute : Route
     {
         #region 字段
         private bool? _seoFirendlyUrlForLanguagesEnagled;
@@ -60,7 +60,7 @@ namespace RCSoft.Web.Framework.Localization
 
         public override RouteData GetRouteData(HttpContextBase httpContext)
         {
-            if (DataSettingsHelper.DatabaseIsInstalled() && this.SeoFriendlyUrlsForLanguagesEnabled)
+            if (DataSettingsHelper.DatabaseIsInstalled())
             {
                 string virtualPath = httpContext.Request.AppRelativeCurrentExecutionFilePath;
                 string applicationPath = httpContext.Request.ApplicationPath;
@@ -82,7 +82,7 @@ namespace RCSoft.Web.Framework.Localization
         public override VirtualPathData GetVirtualPath(RequestContext requestContext, RouteValueDictionary values)
         {
             VirtualPathData data = base.GetVirtualPath(requestContext, values);
-            if (DataSettingsHelper.DatabaseIsInstalled() && this.SeoFriendlyUrlsForLanguagesEnabled)
+            if (DataSettingsHelper.DatabaseIsInstalled())
             {
                 if (data != null)
                 {
@@ -104,18 +104,5 @@ namespace RCSoft.Web.Framework.Localization
         }
         #endregion
 
-        #region 属性
-
-        public bool SeoFriendlyUrlsForLanguagesEnabled
-        {
-            get
-            {
-                if (!_seoFirendlyUrlForLanguagesEnagled.HasValue)
-                    _seoFirendlyUrlForLanguagesEnagled = EngineContext.Current.Resolve<LocalizationSettings>().SeoFriendlUrlsForLanguagesEnagled;
-                return _seoFirendlyUrlForLanguagesEnagled.Value;
-            }
-        }
-
-        #endregion
     }
 }
