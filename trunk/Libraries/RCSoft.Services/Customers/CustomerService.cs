@@ -1,7 +1,8 @@
-﻿using RCSoft.Core.Domain.Customers;
+﻿using System;
+using System.Linq;
+using RCSoft.Core.Domain.Customers;
 using System.Collections.Generic;
 using RCSoft.Core.Data;
-using System;
 
 namespace RCSoft.Services.Customers
 {
@@ -43,7 +44,7 @@ namespace RCSoft.Services.Customers
 
             var query = from cr in _customerRoleRepository.Table
                         orderby cr.Id
-                        where cr.Name = roleName
+                        where cr.Name == roleName
                         select cr;
             var customerRole = query.FirstOrDefault();
             return customerRole;
