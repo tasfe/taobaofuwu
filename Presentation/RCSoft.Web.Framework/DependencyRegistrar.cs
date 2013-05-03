@@ -9,6 +9,7 @@ using RCSoft.Web.Framework.Mvc.Routes;
 using RCSoft.Core;
 using Autofac.Integration.Mvc;
 using RCSoft.Core.Fakes;
+using RCSoft.Services.Customers;
 
 namespace RCSoft.Web.Framework
 {
@@ -33,6 +34,7 @@ namespace RCSoft.Web.Framework
             builder.RegisterType<WebHelper>().As<IWebHelper>().InstancePerHttpRequest();
             builder.RegisterType<RoutePublisher>().As<IRoutePublisher>().SingleInstance();
             builder.RegisterControllers(typeFinder.GetAssemblies().ToArray());
+            builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerHttpRequest();
         }
 
         public int Order
