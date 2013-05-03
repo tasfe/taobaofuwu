@@ -43,6 +43,7 @@
     <Compile Include="Customers\CustomerService.cs" />
     <Compile Include="Customers\ICustomerService.cs" />
     <Compile Include="Localization\ILocalizationService.cs" />
+    <Compile Include="Localization\LocalizationExtentions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

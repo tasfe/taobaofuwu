@@ -8,8 +8,19 @@ namespace RCSoft.Services.Customers
 {
     public partial class CustomerService : ICustomerService
     {
+        #region 定义
+        private const string CUSTOMERROLES_ALL_KEY = "RCSoft.customerrole.all-{0}";
+        #endregion
+
         #region 字段
         private readonly IRepository<CustomerRole> _customerRoleRepository;
+        #endregion
+
+        #region 构造函数
+        public CustomerService(IRepository<CustomerRole> customerRoleRepository)
+        {
+            this._customerRoleRepository = customerRoleRepository;
+        }
         #endregion
 
         #region 方法
@@ -55,16 +66,22 @@ namespace RCSoft.Services.Customers
         /// </summary>
         /// <param name="showActived">是否只获取激活的</param>
         /// <returns>角色</returns>
-        public IList<CustomerRole> GetAllCustomerRoles(bool showActived = true)
+        public virtual IList<CustomerRole> GetAllCustomerRoles(bool showActived = true)
         {
-            throw new System.NotImplementedException();
+            string key = string.Format(CUSTOMERROLES_ALL_KEY, showActived);
+            var query = from cr in _customerRoleRepository.Table
+                        orderby cr.Name
+                        where (cr.Active)
+                        select cr;
+            var customerRoles = query.ToList();
+            return customerRoles;
         }
 
         /// <summary>
         /// 创建一个角色
         /// </summary>
         /// <param name="customerRole">角色实体</param>
-        public void InsertCustomerRole(CustomerRole customerRole)
+        public virtual void InsertCustomerRole(CustomerRole customerRole)
         {
             if (customerRole == null)
                 throw new ArgumentNullException("角色");
