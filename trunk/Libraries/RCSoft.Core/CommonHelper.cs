@@ -171,5 +171,16 @@ namespace RCSoft.Core
 
             return TypeDescriptor.GetConverter(type);
         }
+        public static string ConvertEnum(string str)
+        {
+            string result = string.Empty;
+            char[] letters = str.ToCharArray();
+            foreach (char c in letters)
+                if (c.ToString() != c.ToString().ToLower())
+                    result += " " + c.ToString();
+                else
+                    result += c.ToString();
+            return result;
+        }
     }
 }
