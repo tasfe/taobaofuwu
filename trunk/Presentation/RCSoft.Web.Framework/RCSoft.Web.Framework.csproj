@@ -40,6 +40,9 @@
     <Reference Include="Autofac.Integration.Mvc">
       <HintPath>..\..\packages\Autofac.Mvc3.2.6.3.862\lib\NET40\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="FluentValidation">
       <HintPath>..\..\packages\FluentValidation.3.4.6.0\lib\Net40\FluentValidation.dll</HintPath>
     </Reference>
@@ -47,7 +50,9 @@
       <HintPath>..\..\packages\FluentValidation.MVC3.3.4.6.0\lib\Net40\FluentValidation.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -95,6 +100,10 @@
     <ProjectReference Include="..\..\Libraries\RCSoft.Core\RCSoft.Core.csproj">
       <Project>{CEF80135-DB6D-489A-AF06-35EAC345033B}</Project>
       <Name>RCSoft.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\RCSoft.Data\RCSoft.Data.csproj">
+      <Project>{44B4183B-B5FB-4675-B603-7F8F5FB43276}</Project>
+      <Name>RCSoft.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Libraries\RCSoft.Services\RCSoft.Services.csproj">
       <Project>{41B2AF46-A3E2-4EDC-BCE1-BFFB0F7468A2}</Project>
@@ -373,6 +382,7 @@
     <EmbeddedResource Include="App_GlobalResources\UploadLocalization.zh-CN.resx" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
