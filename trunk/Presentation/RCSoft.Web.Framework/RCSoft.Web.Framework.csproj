@@ -382,7 +382,6 @@
     <EmbeddedResource Include="App_GlobalResources\UploadLocalization.zh-CN.resx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
