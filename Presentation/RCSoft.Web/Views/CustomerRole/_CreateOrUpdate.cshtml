@@ -1,0 +1,14 @@
+﻿@using RCSoft.Web.Models.Customers;
+@model CustomerRoleModel
+
+@using Telerik.Web.Mvc.UI;
+@Html.ValidationSummary(true)
+@Html.HiddenFor(model=>model.Id)
+<table>
+    <tr>
+        <td>
+            @Html.RCSoftLabelFor()
+        </td>
+    </tr>
+</table>
+<h2>_CreateOrUpdate</h2>
