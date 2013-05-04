@@ -27,6 +27,7 @@ namespace RCSoft.Web.Controllers
 
         public ActionResult List()
         {
+
             var customerRoles = _customerService.GetAllCustomerRoles(true);
             var gridModel = new GridModel<CustomerRoleModel>
             {

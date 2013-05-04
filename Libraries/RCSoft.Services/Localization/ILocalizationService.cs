@@ -9,7 +9,7 @@ namespace RCSoft.Services.Localization
     public partial interface ILocalizationService
     {
         /// <summary>
-        /// Deletes a locale string resource
+        /// 删除
         /// </summary>
         /// <param name="localeStringResource">Locale string resource</param>
         void DeleteLocaleStringResource(LocaleStringResource localeStringResource);
@@ -35,15 +35,14 @@ namespace RCSoft.Services.Localization
         /// <param name="languageId">Language identifier</param>
         /// <param name="logIfNotFound">A value indicating whether to log error if locale string resource is not found</param>
         /// <returns>Locale string resource</returns>
-        LocaleStringResource GetLocaleStringResourceByName(string resourceName, int languageId,
-            bool logIfNotFound = true);
+        LocaleStringResource GetLocaleStringResourceByName(string resourceName, bool logIfNotFound = true);
 
         /// <summary>
         /// Gets all locale string resources by language identifier
         /// </summary>
         /// <param name="languageId">Language identifier</param>
         /// <returns>Locale string resources</returns>
-        IList<LocaleStringResource> GetAllResources(int languageId);
+        IList<LocaleStringResource> GetAllResources();
 
         /// <summary>
         /// Inserts a locale string resource

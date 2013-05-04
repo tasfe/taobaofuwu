@@ -55,7 +55,7 @@ namespace RCSoft.Web.Controllers
 
                     DataSettingsHelper.ResetCache();
 
-                    return RedirectToRoute("CustomerRole");
+                    return RedirectToRoute("HomePage");
                 }
                 catch (Exception exception)
                 {
