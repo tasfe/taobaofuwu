@@ -83,6 +83,7 @@
     <Compile Include="Localization\LocalizedUrlExtenstions.cs" />
     <Compile Include="Localization\Localizer.cs" />
     <Compile Include="Mvc\BaseModel.cs" />
+    <Compile Include="Mvc\DeleteConfirmationModel.cs" />
     <Compile Include="Mvc\RCSoftDependencyResolver.cs" />
     <Compile Include="Mvc\RCSoftMetadataProvider.cs" />
     <Compile Include="Mvc\RCSoftModelBinder.cs" />

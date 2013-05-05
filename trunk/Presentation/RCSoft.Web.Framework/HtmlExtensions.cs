@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Web.Mvc;
+using System.Web.Mvc.Html;
 using System.Linq;
 using System.Linq.Expressions;
 using RCSoft.Core.Infrastructure;
@@ -8,6 +9,9 @@ using RCSoft.Core;
 using RCSoft.Services.Localization;
 using System.Collections.Generic;
 using System.Web.Routing;
+using RCSoft.Web.Framework.Mvc;
+using Telerik.Web.Mvc.UI;
+using System.IO;
 
 namespace RCSoft.Web.Framework
 {
@@ -73,6 +77,48 @@ namespace RCSoft.Web.Framework
         {
             var id = html.ViewData.TemplateInfo.GetFullHtmlFieldId(ExpressionHelper.GetExpressionText(expression));
             return id.Replace('[', '_').Replace(']', '_');
+        }
+
+        public static MvcHtmlString DeleteConfirmation<T>(this HtmlHelper<T> helper, string buttonsSelector = null) where T : BaseEntityModel
+        {
+            return DeleteConfirmation<T>(helper, "", buttonsSelector);
+        }
+
+        public static MvcHtmlString DeleteConfirmation<T>(this HtmlHelper<T> helper, string actionName, string buttonsSelector) where T : BaseEntityModel
+        {
+            if (String.IsNullOrEmpty(actionName))
+                actionName = "Delete";
+            var modalId = MvcHtmlString.Create(helper.ViewData.ModelMetadata.ModelType.Name.ToLower() + "-delete-confirmation").ToHtmlString();
+
+            helper.Telerik();
+
+            if (!string.IsNullOrEmpty(buttonsSelector))
+            {
+                var textWriter = new StringWriter();
+                IClientSideObjectWriter objectWriter = new ClientSideObjectWriterFactory().Create(buttonsSelector, "click", textWriter);
+                objectWriter.Start();
+                textWriter.Write("function(e){e.preventDefault();openModalWindow(\"" + modalId + "\");}");
+                objectWriter.Complete();
+                var value = textWriter.ToString();
+                ScriptRegistrar.Current.OnDocumentReadyStatements.Add(value);
+            }
+
+            var deleteConfirmationModel = new DeleteConfirmationModel
+            {
+                Id = helper.ViewData.Model.Id,
+                ControllerName = helper.ViewContext.RouteData.GetRequiredString("controller"),
+                ActionName = actionName
+            };
+            var window = helper.Telerik().Window().Name(modalId)
+                .Title(EngineContext.Current.Resolve<ILocalizationService>().GetResource("Common.Confirm"))
+                .Modal(true)
+                .Effects(x => x.Toggle())
+                .Resizable(x => x.Enabled(false))
+                .Buttons(x => x.Close())
+                .Visible(false)
+                .Content(helper.Partial("Delete", deleteConfirmationModel).ToHtmlString()).ToHtmlString();
+
+            return MvcHtmlString.Create(window);
         }
     }
 }
