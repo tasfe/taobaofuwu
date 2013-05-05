@@ -492,6 +492,8 @@
     <Content Include="Content\2013.1.219\Windows7\slider-v.gif" />
     <Content Include="Content\2013.1.219\Windows7\sprite-vertical.png" />
     <Content Include="Content\2013.1.219\Windows7\sprite.png" />
+    <Content Include="Content\images\ico-help.gif" />
+    <Content Include="Content\images\install-synchronizing.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -585,7 +587,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\images\" />
     <Folder Include="Validators\Home\" />
   </ItemGroup>
   <ItemGroup>
