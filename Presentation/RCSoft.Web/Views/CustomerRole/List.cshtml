@@ -9,6 +9,7 @@
 <div>
     <div>
         <a href="@Url.Action("Create")" class="t-button">@T("Common.AddNew")</a>
+        <input type="button" id="btnDelete" class="t-button" value="@T("Common.Delete.Selected")" />
     </div>
 </div>
 <table width="100%">
@@ -35,6 +36,14 @@
                     .ClientEvents(events => events.OnDataBinding("onDataBinding"))
                     .Columns(columns =>
                         {
+                            columns.Bound(x => x.Id)
+                                .Filterable(false)
+                                .Template(x => string.Format("<input type='checkbox' name='checkedRecords' value='{0}' class='checkboxGroups'", x.Id))
+                                .ClientTemplate("<input type='checkbox' name='checkedRecords' value='<#=Id#>' class='checkboxGroups'")
+                                .Title("<input id='checkAll' type='checkbox'")
+                                .Width(50)
+                                .HtmlAttributes(new { style = "text-align:center" })
+                                .HeaderHtmlAttributes(new { style = "text-align:center" });
                             columns.Bound(x => x.Name).Width(150);
                             columns.Bound(x => x.ParentRoleName)
                                 .Title(T("Customers.CustomerRole.Fields.ParentRoleId").Text)
@@ -55,6 +64,7 @@
         </td>
     </tr>
 </table>
+@Html.DeleteConfirmation("customerrole-delete")
 <script type="text/javascript">
     $(document).ready(function () {
         //search button
