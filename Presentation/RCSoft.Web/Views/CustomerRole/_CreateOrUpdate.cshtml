@@ -1,4 +1,5 @@
 ﻿@using RCSoft.Web.Models.Customers;
+@using RCSoft.Web.Framework;
 @model CustomerRoleModel
 
 @using Telerik.Web.Mvc.UI;
@@ -6,9 +7,39 @@
 @Html.HiddenFor(model=>model.Id)
 <table>
     <tr>
+        <td style="width:150px">
+            @Html.RCSoftLabelFor(model => model.Name):
+        </td>
         <td>
-            @Html.RCSoftLabelFor()
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.RCSoftLabelFor(model => model.ParentRoleId):
+        </td>
+        <td>
+            @(Html.Telerik().ComboBoxFor(x => x.ParentRoleId).BindTo(Model.ParentRoles).Encode(true)
+            .DataBinding(x => x.Ajax().Enabled(true).Select("AllCustomerRoles", "CustomerRole", new { selectedId=Model.ParentRoleId})))
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.RCSoftLabelFor(mode => mode.Active):
+        </td>
+        <td>
+            @Html.EditorFor(model => model.Active)
+            @Html.ValidationMessageFor(model => model.Active)
+        </td>
+    </tr>
+    <tr>
+        <td>
+           @Html.RCSoftLabelFor(model => model.Description):
+        </td>
+        <td>
+             @Html.EditorFor(model => model.Description, "RichEditor")
+             @Html.ValidationMessageFor(model => model.Description)
         </td>
     </tr>
 </table>
-<h2>_CreateOrUpdate</h2>

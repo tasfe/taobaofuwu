@@ -6,6 +6,8 @@ using System.Data.Entity.Infrastructure;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data;
+using System.Reflection;
+using System.Data.Entity.ModelConfiguration;
 
 
 namespace RCSoft.Data
@@ -19,7 +21,19 @@ namespace RCSoft.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //Type configType=typeof(LanguageMap)
+            //动态调取所有的Map配置项
+            Type configType = typeof(CustomerRoleMap);//任意一个map配置
+
+            var typesToRegister = Assembly.GetAssembly(configType).GetTypes()
+                .Where(type => !String.IsNullOrEmpty(type.Namespace))
+                .Where(type => type.BaseType != null && type.BaseType.IsGenericType && type.BaseType.GetGenericTypeDefinition() == typeof(EntityTypeConfiguration<>));
+            foreach (var type in typesToRegister)
+            {
+                dynamic configurationInstance = Activator.CreateInstance(type);
+                modelBuilder.Configurations.Add(configurationInstance);
+            }
+            //可以手动配置,例如
+            //modelBuilder.Configurations.Add(new CustomerRoleMap);
             base.OnModelCreating(modelBuilder);
         }
 

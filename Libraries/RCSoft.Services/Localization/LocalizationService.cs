@@ -77,22 +77,40 @@ namespace RCSoft.Services.Localization
             throw new NotImplementedException();
         }
 
-        public string GetResource(string resourceKey)
+        public virtual string GetResource(string resourceKey)
         {
-            throw new NotImplementedException();
+            return GetResource(resourceKey, true, "", false);
         }
 
-        public string GetResource(string resourceKey, bool logIfNotFound = true, string defaultValue = "", bool returnEmptyIfNotFound = false)
+        public virtual string GetResource(string resourceKey, bool logIfNotFound = true, string defaultValue = "", bool returnEmptyIfNotFound = false)
         {
-            throw new NotImplementedException();
+            string result = string.Empty;
+            if (resourceKey == null)
+                resourceKey = string.Empty;
+            resourceKey = resourceKey.Trim().ToLowerInvariant();
+            var query = from l in _lsrRepository.Table
+                        where l.ResourceName == resourceKey
+                        select l.ResourceValue;
+            if (query.FirstOrDefault() != null)
+                result = query.FirstOrDefault();
+            if (string.IsNullOrEmpty(result))
+            {
+                if (logIfNotFound)
+                {
+                    //TO DO Log the warning
+
+                }
+                if (!String.IsNullOrEmpty(defaultValue))
+                    result = defaultValue;
+                else
+                    if (!returnEmptyIfNotFound)
+                        result = resourceKey;
+
+            }
+            return result;
         }
 
-        public string ExportResourcesToXml(Language language)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ImportResourcesFromXml(Language language, string xml)
+        public void ImportResourcesFromXml(string xml)
         {
             throw new NotImplementedException();
         } 

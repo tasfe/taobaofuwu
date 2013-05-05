@@ -1,0 +1,20 @@
+﻿@using RCSoft.Web.Models.Customers;
+@model CustomerRoleModel
+@{
+    ViewBag.Title = @T("Customers.CustomerRole.AddNew").Text;
+}
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "category-form" }))
+{
+    <div class="section-header">
+        <div class="title">
+            @T("Customers.CustomerRole.AddNew")@Html.ActionLink("(" + @T("Customers.CustomerRole.BackToList") + ")","List")
+        </div>
+        <div class="options">
+            <input type="submit" name="save" class="t-button" value="@T("Common.Save")" />
+            <input type="submit" name="save-continue" class="t-button" value="@T("Common.SaveContinue")" />
+        </div>
+    </div>
+    <div>
+        @Html.Partial("_CreateOrUpdate", Model)
+    </div>
+}

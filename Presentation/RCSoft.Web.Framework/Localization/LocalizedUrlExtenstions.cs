@@ -113,11 +113,8 @@ namespace RCSoft.Web.Framework.Localization
             return result;
         }
 
-        public static string AddLocalizedPathToRawUrl(this string url, string applicationPath,
-            Language language)
+        public static string AddLocalizedPathToRawUrl(this string url, string applicationPath)
         {
-            if (language == null)
-                throw new ArgumentNullException("语言");
 
             //null validation is not required
             //if (string.IsNullOrEmpty(url))
@@ -132,7 +129,7 @@ namespace RCSoft.Web.Framework.Localization
             }
 
             //add SEO code
-            url = url.Insert(startIndex, language.UniqueSeoCode);
+            url = url.Insert(startIndex, "cn");
             url = url.Insert(startIndex, "/");
 
             return url;

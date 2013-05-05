@@ -22,7 +22,7 @@ namespace RCSoft.Web.Framework
         public static MvcHtmlString Hint(this HtmlHelper helper, string value)
         {
             var builder = new TagBuilder("img");
-            builder.MergeAttribute("src", ResolveUrl(helper, "").ToHtmlString());
+            builder.MergeAttribute("src", ResolveUrl(helper, "~/Content/images/ico-help.gif").ToHtmlString());
             builder.MergeAttribute("alt", value);
             builder.MergeAttribute("title", value);
 
@@ -35,7 +35,7 @@ namespace RCSoft.Web.Framework
             var metadata = ModelMetadata.FromLambdaExpression(expression, helper.ViewData);
             var hintResource = string.Empty;
             object value = null;
-            if (metadata.AdditionalValues.TryGetValue("RCSoftResourceDispalyName", out value))
+            if (metadata.AdditionalValues.TryGetValue("RCSoftResourceDisplayName", out value))
             {
                 var resourceDisplayName = value as RCSoftResourceDisplayName;
                 if (resourceDisplayName != null && displayHint)
@@ -58,7 +58,7 @@ namespace RCSoft.Web.Framework
         {
             ModelMetadata metadata = ModelMetadata.FromLambdaExpression(expression, html.ViewData);
             string htmlFieldName = ExpressionHelper.GetExpressionText(expression);
-            string labelText = metadata.DataTypeName ?? metadata.PropertyName ?? htmlFieldName.Split('.').Last();
+            string labelText = metadata.DisplayName ?? metadata.PropertyName ?? htmlFieldName.Split('.').Last();
             if (string.IsNullOrEmpty(labelText))
                 return MvcHtmlString.Empty;
 
@@ -67,6 +67,12 @@ namespace RCSoft.Web.Framework
             tag.Attributes.Add("for", html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldId(htmlFieldName));
             tag.SetInnerText(labelText);
             return MvcHtmlString.Create(tag.ToString(TagRenderMode.Normal));
+        }
+
+        public static string FiledIdFor<T, TResult>(this HtmlHelper<T> html, Expression<Func<T, TResult>> expression)
+        {
+            var id = html.ViewData.TemplateInfo.GetFullHtmlFieldId(ExpressionHelper.GetExpressionText(expression));
+            return id.Replace('[', '_').Replace(']', '_');
         }
     }
 }

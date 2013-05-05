@@ -3,6 +3,12 @@ using System.Web.Mvc;
 using RCSoft.Services.Customers;
 using Telerik.Web.Mvc;
 using RCSoft.Web.Models.Customers;
+using System.Collections.Generic;
+using Telerik.Web.Mvc.UI;
+using RCSoft.Core.Domain.Customers;
+using RCSoft.Web.Framework.Controllers;
+using RCSoft.Services.Localization;
+using System;
 
 namespace RCSoft.Web.Controllers
 {
@@ -10,12 +16,34 @@ namespace RCSoft.Web.Controllers
     {
         #region 字段
         private readonly ICustomerService _customerService;
+        private readonly ILocalizationService _localizationService;
         #endregion
 
         #region 构造函数
-        public CustomerRoleController(ICustomerService customerService)
+        public CustomerRoleController(ICustomerService customerService,ILocalizationService localizationService)
         {
             this._customerService = customerService;
+            this._localizationService = localizationService;
+        }
+        #endregion
+
+        #region AJAX
+        public ActionResult AllCustomerRoles(string text, int selectedId)
+        {
+            var roles = _customerService.GetAllCustomerRoles(true);
+            roles.Insert(0, new CustomerRole { Name = "[根目录]", Id = 0 });
+            var selectList = new List<SelectListItem>();
+            foreach (var r in roles)
+            {
+                selectList.Add(new SelectListItem()
+                    {
+                        Value = r.Id.ToString(),
+                        Text = r.Name,
+                        Selected = r.Id == selectedId
+                    });
+            }
+
+            return new JsonResult { Data = selectList, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
         #endregion
 
@@ -27,14 +55,70 @@ namespace RCSoft.Web.Controllers
 
         public ActionResult List()
         {
-
-            var customerRoles = _customerService.GetAllCustomerRoles(true);
+            var model = new CustomerRoleListModel();
+            var customerRoles = _customerService.GetAllCustomerRoles(null, 0, 10, true);
+            model.CustomerRoles = new GridModel<CustomerRoleModel>
+            {
+                Data = customerRoles.Select(x => {
+                    var customerRoleModel = x.ToModel();
+                    customerRoleModel.ParentRoleName = x.ParentRoleId == 0 ? "" : _customerService.GetCustomerRoleById(x.ParentRoleId).Name;
+                    return customerRoleModel;
+                }),
+                
+                Total = customerRoles.TotalCount
+            };
+            return View(model);
+        }
+        [HttpPost, GridAction(EnableCustomBinding = true)]
+        public ActionResult List(GridCommand command, CustomerRoleListModel model)
+        {
+            var roles = _customerService.GetAllCustomerRoles(model.SearchRoleName, command.Page - 1, command.PageSize, true);
             var gridModel = new GridModel<CustomerRoleModel>
             {
-                Data = customerRoles.Select(x => x.ToModel()),
-                Total = customerRoles.Count()
+                Data = roles.Select(x =>
+                {
+                    var roleModel = x.ToModel();
+                    roleModel.ParentRoleName = x.ParentRoleId == 0 ? "" : _customerService.GetCustomerRoleById(x.ParentRoleId).Name;
+                    return roleModel;
+                }),
+                Total = roles.TotalCount
             };
-            return View(gridModel);
+            return new JsonResult
+            {
+                Data = gridModel
+            };
+        }
+
+        public ActionResult Create()
+        {
+            var model = new CustomerRoleModel();
+            model.Active = true;
+            //父角色
+            model.ParentRoles = new List<DropDownItem> { new DropDownItem { Text = "[根目录]", Value = "0" } };
+            if (model.ParentRoleId > 0)
+            {
+                var parentRole = _customerService.GetCustomerRoleById(model.ParentRoleId);
+                if (parentRole != null)
+                    model.ParentRoles.Add(new DropDownItem { Text = parentRole.Name, Value = parentRole.Id.ToString() });
+                else
+                    model.ParentRoleId = 0;
+            }
+            return View(model);
+        }
+
+        [HttpPost, ParameterBasedOnFormNameAttribute("save-continuee", "continueEditing")]
+        public ActionResult Create(CustomerRoleModel model, bool continueEditing)
+        {
+            if (ModelState.IsValid)
+            {
+                var customerRole = model.ToEntity();
+                _customerService.InsertCustomerRole(customerRole);
+
+                SuccessNotification(_localizationService.GetResource("Customers.CustomerRoles.Added"));
+                return continueEditing ? RedirectToAction("Edit", new { id = customerRole.Id }) : RedirectToAction("List");
+            }
+
+            return View(model);
         }
         #endregion
     }

@@ -3,6 +3,8 @@ using RCSoft.Web.Validators.Customers;
 using RCSoft.Web.Framework.Mvc;
 using System.Web.Mvc;
 using RCSoft.Web.Framework;
+using Telerik.Web.Mvc.UI;
+using System.Collections.Generic;
 
 namespace RCSoft.Web.Models.Customers
 {
@@ -23,5 +25,8 @@ namespace RCSoft.Web.Models.Customers
         [RCSoftResourceDisplayName("Customers.CustomerRole.Fields.Description")]
         [AllowHtml]
         public string Description { get; set; }
+
+        public IList<DropDownItem> ParentRoles { get; set; }
+        public string ParentRoleName { get; set; }
     }
 }

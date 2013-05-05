@@ -83,17 +83,10 @@ namespace RCSoft.Services.Localization
             bool logIfNotFound = true, string defaultValue = "", bool returnEmptyIfNotFound = false);
 
         /// <summary>
-        /// Export language resources to xml
-        /// </summary>
-        /// <param name="language">Language</param>
-        /// <returns>Result in XML format</returns>
-        string ExportResourcesToXml(Language language);
-
-        /// <summary>
         /// Import language resources from XML file
         /// </summary>
         /// <param name="language">Language</param>
         /// <param name="xml">XML</param>
-        void ImportResourcesFromXml(Language language, string xml);
+        void ImportResourcesFromXml(string xml);
     }
 }

@@ -19,7 +19,7 @@ namespace RCSoft.Data
 
         public T GetById(object id)
         {
-            return this._entities.Find(id);
+            return this.Entities.Find(id);
         }
 
         public void Insert(T entity)
@@ -30,7 +30,7 @@ namespace RCSoft.Data
                 {
                     throw new ArgumentNullException("实体");
                 }
-                this._entities.Add(entity);
+                this.Entities.Add(entity);
                 this._context.SaveChanges();
             }
             catch (DbEntityValidationException dbEx)

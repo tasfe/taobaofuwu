@@ -1,5 +1,6 @@
 ﻿using RCSoft.Core.Domain.Customers;
 using System.Collections.Generic;
+using RCSoft.Core;
 
 namespace RCSoft.Services.Customers
 {
@@ -27,6 +28,16 @@ namespace RCSoft.Services.Customers
         /// <param name="showActived">是否只获取激活的</param>
         /// <returns>角色</returns>
         IList<CustomerRole> GetAllCustomerRoles(bool showActived = true);
+
+        /// <summary>
+        /// 获取所有的角色
+        /// </summary>
+        /// <param name="roleName">角色名称</param>
+        /// <param name="pageIndex">当前页</param>
+        /// <param name="pageSize">每页数量</param>
+        /// <param name="showActived">是否只获取激活的</param>
+        /// <returns></returns>
+        IPagedList<CustomerRole> GetAllCustomerRoles(string roleName, int pageIndex, int pageSize, bool showActived = true);
 
         /// <summary>
         /// 创建一个角色

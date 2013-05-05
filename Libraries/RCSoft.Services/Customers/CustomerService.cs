@@ -3,6 +3,7 @@ using System.Linq;
 using RCSoft.Core.Domain.Customers;
 using System.Collections.Generic;
 using RCSoft.Core.Data;
+using RCSoft.Core;
 
 namespace RCSoft.Services.Customers
 {
@@ -68,15 +69,39 @@ namespace RCSoft.Services.Customers
         /// <returns>角色</returns>
         public virtual IList<CustomerRole> GetAllCustomerRoles(bool showActived = true)
         {
+            return GetAllCustomerRoles(null, showActived);
+        }
+        /// <summary>
+        /// 获取所有的角色
+        /// </summary>
+        /// <param name="showActived">是否只获取激活的</param>
+        /// <returns>角色</returns>
+        public virtual IList<CustomerRole> GetAllCustomerRoles(string roleName, bool showActived = true)
+        {
             string key = string.Format(CUSTOMERROLES_ALL_KEY, showActived);
-            var query = from cr in _customerRoleRepository.Table
-                        orderby cr.Name
-                        where (cr.Active)
-                        select cr;
+            var query = _customerRoleRepository.Table;
+            //是否根据角色名称查找
+            if(!string.IsNullOrWhiteSpace(roleName))
+                query=query.Where(cr=>cr.Name.Contains(roleName));
+            query=query.Where(cr=>cr.Active);
+            query = query.OrderBy(cr => cr.Name);
             var customerRoles = query.ToList();
             return customerRoles;
         }
 
+        /// <summary>
+        /// 获取所有的角色
+        /// </summary>
+        /// <param name="roleName">角色名称</param>
+        /// <param name="pageIndex">当前页</param>
+        /// <param name="pageSize">每页数量</param>
+        /// <param name="showActived">是否只获取激活的</param>
+        /// <returns></returns>
+        public virtual IPagedList<CustomerRole> GetAllCustomerRoles(string roleName, int pageIndex, int pageSize, bool showActived = true)
+        {
+            var roles = GetAllCustomerRoles(roleName, showActived);
+            return new PagedList<CustomerRole>(roles, pageIndex, pageSize);
+        }
         /// <summary>
         /// 创建一个角色
         /// </summary>
