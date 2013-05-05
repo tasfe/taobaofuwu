@@ -70,7 +70,6 @@
     <Compile Include="Domain\Customer.cs" />
     <Compile Include="Domain\Customers\CustomerRole.cs" />
     <Compile Include="Domain\Localization\ILocalizedEntity.cs" />
-    <Compile Include="Domain\Localization\Language.cs" />
     <Compile Include="Domain\Localization\LocaleStringResource.cs" />
     <Compile Include="Domain\Localization\LocalizationSettings.cs" />
     <Compile Include="Fakes\FakeHttpContext.cs" />
@@ -94,9 +93,11 @@
     <Compile Include="Infrastructure\RCSoftEngine.cs" />
     <Compile Include="Infrastructure\Singleton.cs" />
     <Compile Include="Infrastructure\WebAppTypeFinder.cs" />
+    <Compile Include="IPagedList.cs" />
     <Compile Include="IPersistentCollection.cs" />
     <Compile Include="IWebHelper.cs" />
     <Compile Include="IWorkContext.cs" />
+    <Compile Include="PageList.cs" />
     <Compile Include="PersistentCollection.cs" />
     <Compile Include="RCSoftException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,33 +1,82 @@
 ﻿@using RCSoft.Web.Models.Customers;
+@using RCSoft.Web.Framework;
 @using Telerik.Web.Mvc;
 @using Telerik.Web.Mvc.UI;
-@model GridModel<CustomerRoleModel>
+@model CustomerRoleListModel
 @{
     ViewBag.Title = @T("Customers.CustomerRole").Text;
 }
+<div>
+    <div>
+        <a href="@Url.Action("Create")" class="t-button">@T("Common.AddNew")</a>
+    </div>
+</div>
+<table width="100%">
+    <tr>
+        <td style="width:150px;">
+            @Html.RCSoftLabelFor(model => model.SearchRoleName):
+        </td>
+        <td  style="text-align:left;">
+            @Html.EditorFor(model => Model.SearchRoleName)
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input type="button" id="btnSearch" class="t-button" value="@T("Common.Search")" />
+        </td>
+    </tr>
+</table>
+<p></p>
 <table>
     <tr>
         <td>
-            @(Html.Telerik().Grid<CustomerRoleModel>()
-            .Name("customerrole-grid")
-            .BindTo(Model.Data)
-            .Columns(columns =>
-                {
-                    columns.Bound(x => x.Name).Width(150);
-                    columns.Bound(x => x.ParentRoleId)
-                        .Width(150);
-                    columns.Bound(x => x.Description).Width(200);
-                    columns.Bound(x => x.Active).Width(80).Template(x => x.Active.ToString().ToLower());
-                    columns.Bound(x => x.Id)
-                        .Template(x => Html.ActionLink(T("Command.Edit").Text, "Edit", new { id = x.Id }))
-                        .ClientTemplate("<a href=\"Edit/<#= Id #>\">" + T("Common.Edit").Text + "</a>")
-                        .Width(50)
-                        .HeaderTemplate(T("Common.Edit").Text)
-                        .Filterable(false);
-               })
-               .DataBinding(dataBinding=>dataBinding.Ajax().Select("List","CustomerRole"))
-               .EnableCustomBinding(true)
+            @(Html.Telerik().Grid<CustomerRoleModel>(Model.CustomerRoles.Data)
+                    .Name("customerrole-grid")
+                    .ClientEvents(events => events.OnDataBinding("onDataBinding"))
+                    .Columns(columns =>
+                        {
+                            columns.Bound(x => x.Name).Width(150);
+                            columns.Bound(x => x.ParentRoleName)
+                                .Title(T("Customers.CustomerRole.Fields.ParentRoleId").Text)
+                                .Width(150);
+                            columns.Bound(x => x.Description).Width(200);
+                            columns.Bound(x => x.Active).Width(80).Template(x => x.Active.ToString().ToLower());
+                            columns.Bound(x => x.Id)
+                                .Template(x => Html.ActionLink(T("Common.Edit").Text, "Edit", new { id = x.Id }))
+                                .ClientTemplate("<a href=\"Edit/<#= Id #>\">" + T("Common.Edit").Text + "</a>")
+                                .Width(50)
+                                .HeaderTemplate(T("Common.Edit").Text)
+                                .Filterable(false);
+                        })
+                       .Pageable(settings => settings.Total(Model.CustomerRoles.Total).PageSize(10).Position(GridPagerPosition.Both))
+                       .DataBinding(dataBinding => dataBinding.Ajax().Select("List", "CustomerRole"))
+                       .EnableCustomBinding(true)
             )
         </td>
     </tr>
 </table>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //search button
+        $('#btnSearch').click(function () {
+            //search
+            var grid = $('#customerrole-grid').data('tGrid');
+            grid.currentPage = 1; //new search. Set page size to 1
+            grid.ajaxRequest();
+            return false;
+        });
+
+        $("#@Html.FiledIdFor(model => model.SearchRoleName)").keydown(function (event) {
+            if (event.keyCode == 13) {
+                $("#btnSearch").click();
+                return false;
+            }
+        });
+    });
+    function onDataBinding(e) {
+        var searchModel = {
+            SearchCategoryName: $('#@Html.FiledIdFor(model=>model.SearchRoleName)').val()
+        };
+        e.data = searchModel;
+    }
+</script>

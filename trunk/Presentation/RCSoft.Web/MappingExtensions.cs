@@ -12,6 +12,15 @@ namespace RCSoft.Web
         {
             return Mapper.Map<CustomerRole, CustomerRoleModel>(entity);
         }
+        public static CustomerRole ToEntity(this CustomerRoleModel model)
+        {
+            //Mapper.CreateMap<CustomerRoleModel, CustomerRole>().ForMember(c => c.ParentRoles, cm => cm.Ignore());
+            return Mapper.Map<CustomerRoleModel, CustomerRole>(model);
+        }
+        public static CustomerRole ToEntity(this CustomerRoleModel model, CustomerRole destination)
+        {
+            return Mapper.Map(model, destination);
+        }
         #endregion
     }
 }

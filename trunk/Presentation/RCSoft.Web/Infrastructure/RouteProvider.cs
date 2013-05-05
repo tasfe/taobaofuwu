@@ -14,10 +14,16 @@ namespace RCSoft.Web.Infrastructure
                 "",
                 new { controller = "Home", action = "Index" },
                 new[] { "RCSoft.Web.Controllers" });
+            #region 角色
+
+            //角色列表
             routes.MapLocalizedRoute("CustomerRole",
                 "Customer/Role",
                 new { controller = "CustomerRole", action = "List" },
                 new[] { "RCSoft.Web.Controllers" });
+            #endregion
+
+            //routes.m
         }
 
         public int Priority

@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Telerik.Web.Mvc.UI;
+@using Telerik.Web.Mvc;
+<!DOCTYPE html>
 <html>
 <head>
     <title>@ViewBag.Title</title>
@@ -12,5 +14,15 @@
 
 <body>
     @RenderBody()
+
+    @(Html.Telerik().StyleSheetRegistrar()
+                    .DefaultGroup(group=>group
+                        .Add("telerik.common.min.css")
+                        .Add("telerik.vista.min.css")
+                        .Add("telerik.rtl.min.css")))
+    @(Html.Telerik().ScriptRegistrar()
+                    .jQuery(false)
+                    .jQueryValidation(false))
+
 </body>
 </html>
