@@ -69,6 +69,7 @@ namespace RCSoft.Web.Controllers
             };
             return View(model);
         }
+
         [HttpPost, GridAction(EnableCustomBinding = true)]
         public ActionResult List(GridCommand command, CustomerRoleListModel model)
         {
@@ -119,6 +120,64 @@ namespace RCSoft.Web.Controllers
             }
 
             return View(model);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var cutomerRole = _customerService.GetCustomerRoleById(id);
+            if (cutomerRole == null)
+                return RedirectToAction("List");
+
+            var model = cutomerRole.ToModel();
+            model.ParentRoles = new List<DropDownItem> { new DropDownItem { Text = "[根目录]", Value = "0" } };
+            if (model.ParentRoleId > 0)
+            {
+                var parentCategory = _customerService.GetCustomerRoleById(model.ParentRoleId);
+                if (parentCategory != null)
+                    model.ParentRoles.Add(new DropDownItem { Text = parentCategory.Name, Value = parentCategory.Id.ToString() });
+                else
+                    model.ParentRoleId = 0;
+            }
+            return View(model);
+        }
+        [HttpPost, ParameterBasedOnFormNameAttribute("save-continue", "continueEditing")]
+        public ActionResult Edit(CustomerRoleModel model, bool continueEditing)
+        {
+            var customerRole = _customerService.GetCustomerRoleById(model.Id);
+            if (customerRole == null)
+                return RedirectToAction("List");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    customerRole = model.ToEntity(customerRole);
+                    _customerService.UpdateCustomerRole(customerRole);
+                    return continueEditing ? RedirectToAction("Edit", customerRole.Id) : RedirectToAction("List");
+                }
+                return View(model);
+            }
+            catch (Exception exc)
+            {
+                ErrorNotifacation(exc);
+                return RedirectToAction("Edit", new { id = customerRole.Id });
+            }
+        }
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            var customerRole = _customerService.GetCustomerRoleById(id);
+            if (customerRole == null)
+                return RedirectToAction("List");
+            try
+            {
+                _customerService.DeleteCustomerRole(customerRole);
+                return RedirectToAction("List");
+            }
+            catch (Exception exc)
+            {
+                ErrorNotification(exc.Message);
+                return RedirectToAction("Edit", new { id = customerRole.Id });
+            }
         }
         #endregion
     }

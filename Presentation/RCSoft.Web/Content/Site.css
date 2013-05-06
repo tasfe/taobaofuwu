@@ -79,3 +79,11 @@ textarea
 .throbber .curtain{position:fixed;left:0;top:0;width:100%;height:100%;background-color:#3e4d45;opacity:0.9;filter:alpha(opacity=90);}
 .throbber .curtain-content{position:absolute;left:0;top:0;width:100%;height:100%;}
 .throbber .curtain-content div{text-align:center;padding:250px;color:#FFF;}
+
+/* Telerik overrides */
+body .t-content.t-state-active{padding:10px!important;}
+body .t-tabstrip{margin-bottom:10px!important;}
+body .t-button{font-weight:400;color:inherit!important;text-decoration:none;}
+/* Telerik overrides */
+.form-actions{overflow:hidden;padding-top:1em;}
+.form-actions .t-button,.form-actions .t-button button{float:right;margin-left:10px;padding:2px 15px;}

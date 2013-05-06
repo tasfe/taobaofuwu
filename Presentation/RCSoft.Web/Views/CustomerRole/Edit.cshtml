@@ -1,0 +1,21 @@
+﻿@using RCSoft.Web.Models.Customers;
+@using RCSoft.Web.Framework;
+@model CustomerRoleModel
+@{
+    ViewBag.Title = @T("Customers.CustomerRole.EditRole").Text;
+}
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "category-form" }))
+{ 
+    <div class="section-header">
+        <div class="title">
+            @T("Customers.CustomerRole.EditRole") - @Model.Name @Html.ActionLink("(" + T("Customers.CustomerRole.BackToList") + ")", "List")
+        </div>
+        <div class="options">
+            <input type="submit" name="save" class="t-button" value="@T("Common.Save")" />
+            <input type="submit" name="save-continue" class="t-button" value="@T("common.SaveContinue")" />
+            <input type="button" id="customerrole-delete" class="t-button" value="@T("Common.Delete")" />
+        </div>
+    </div>
+    @Html.Partial("_CreateOrUpdate", Model)
+}
+@Html.DeleteConfirmation("customerrole-delete")

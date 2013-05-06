@@ -9,7 +9,6 @@
 <div>
     <div>
         <a href="@Url.Action("Create")" class="t-button">@T("Common.AddNew")</a>
-        <input type="button" id="btnDelete" class="t-button" value="@T("Common.Delete.Selected")" />
     </div>
 </div>
 <table width="100%">
@@ -64,7 +63,6 @@
         </td>
     </tr>
 </table>
-@Html.DeleteConfirmation("customerrole-delete")
 <script type="text/javascript">
     $(document).ready(function () {
         //search button

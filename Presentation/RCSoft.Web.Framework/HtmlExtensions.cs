@@ -110,7 +110,7 @@ namespace RCSoft.Web.Framework
                 ActionName = actionName
             };
             var window = helper.Telerik().Window().Name(modalId)
-                .Title(EngineContext.Current.Resolve<ILocalizationService>().GetResource("Common.Confirm"))
+                .Title(EngineContext.Current.Resolve<ILocalizationService>().GetResource("Common.Confirm.Title"))
                 .Modal(true)
                 .Effects(x => x.Toggle())
                 .Resizable(x => x.Enabled(false))
