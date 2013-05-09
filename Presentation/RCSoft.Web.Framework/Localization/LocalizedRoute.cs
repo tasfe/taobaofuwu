@@ -60,21 +60,21 @@ namespace RCSoft.Web.Framework.Localization
 
         public override RouteData GetRouteData(HttpContextBase httpContext)
         {
-            if (DataSettingsHelper.DatabaseIsInstalled())
-            {
-                string virtualPath = httpContext.Request.AppRelativeCurrentExecutionFilePath;
-                string applicationPath = httpContext.Request.ApplicationPath;
-                if (virtualPath.IsLocalizedUrl(applicationPath, false))
-                {
-                    string rawUrl = httpContext.Request.RawUrl;
-                    var newVirtualPath = rawUrl.RemoveLocalizedPathFromRawUrl(applicationPath);
-                    if (string.IsNullOrEmpty(newVirtualPath))
-                        newVirtualPath = "/";
-                    newVirtualPath = newVirtualPath.RemoveApplicationPathFromRawUrl(applicationPath);
-                    newVirtualPath = "~" + newVirtualPath;
-                    httpContext.RewritePath(newVirtualPath, true);
-                }
-            }
+            //if (DataSettingsHelper.DatabaseIsInstalled())
+            //{
+            //    string virtualPath = httpContext.Request.AppRelativeCurrentExecutionFilePath;
+            //    string applicationPath = httpContext.Request.ApplicationPath;
+            //    if (virtualPath.IsLocalizedUrl(applicationPath, false))
+            //    {
+            //        string rawUrl = httpContext.Request.RawUrl;
+            //        var newVirtualPath = rawUrl.RemoveLocalizedPathFromRawUrl(applicationPath);
+            //        if (string.IsNullOrEmpty(newVirtualPath))
+            //            newVirtualPath = "/";
+            //        newVirtualPath = newVirtualPath.RemoveApplicationPathFromRawUrl(applicationPath);
+            //        newVirtualPath = "~" + newVirtualPath;
+            //        httpContext.RewritePath(newVirtualPath, true);
+            //    }
+            //}
             RouteData data = base.GetRouteData(httpContext);
             return data;
         }

@@ -61,7 +61,7 @@ namespace RCSoft.Services.Localization
         /// </summary>
         /// <param name="languageId">Language identifier</param>
         /// <returns>Locale string resources</returns>
-        Dictionary<string, KeyValuePair<int, string>> GetAllResourceValues(int languageId);
+        Dictionary<string, KeyValuePair<int, string>> GetAllResourceValues();
 
         /// <summary>
         /// Gets a resource string based on the specified ResourceKey property.

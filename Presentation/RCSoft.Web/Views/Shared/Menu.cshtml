@@ -1,0 +1,27 @@
+﻿@using Telerik.Web.Mvc.UI;
+
+@{
+    if (!Telerik.Web.Mvc.SiteMapManager.SiteMaps.ContainsKey("menusitemap"))  
+    {
+        Telerik.Web.Mvc.SiteMapManager.SiteMaps.Register<Telerik.Web.Mvc.XmlSiteMap>("menusitemap", sitemap =>
+            sitemap.LoadFrom("~/sitemap.config"));
+    }
+}
+@{
+    Html.Telerik().Menu().Name("Menusitemap")
+        .BindTo("menusitemap", (item, siteMapNode) =>
+            {
+                var imageUrl = ((Telerik.Web.Mvc.SiteMapNode)siteMapNode).Attributes["ImageUrl"];
+                if (imageUrl != null && !string.IsNullOrEmpty(imageUrl.ToString()))
+                    item.ImageUrl = imageUrl.ToString();
+
+                var resourceName = ((Telerik.Web.Mvc.SiteMapNode)siteMapNode).Attributes["RCSoftResource"];
+                if (resourceName != null && !string.IsNullOrEmpty(resourceName.ToString()))
+                    item.Text = T(resourceName.ToString()).ToHtmlString();
+
+                if (ViewBag.SelectedMenuItem == item.Text)
+                    item.Selected = true;
+            })
+            .OpenOnClick(false)
+            .Render();
+}

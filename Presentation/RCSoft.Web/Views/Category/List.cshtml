@@ -1,0 +1,37 @@
+﻿@using RCSoft.Web.Framework;
+@using RCSoft.Web.Models.Products;
+@using Telerik.Web.Mvc;
+@using Telerik.Web.Mvc.UI;
+@model CategoryListModel
+@{
+    ViewBag.Title = @T("Products.Catalog").Text;
+}
+<div class="section-header">
+    <div class="title">
+        <img src="@Url.Content("~/Content/images/ico-catalog.png")" alt="" />
+        @T("Products.Catalog")
+    </div>
+    <div class="options">
+        <a href="@Url.Action("Create")" class="t-button">@T("Common.AddNew")</a>
+    </div>
+</div>
+<table class="adminContent">
+    <tr>
+        <td>
+            @(Html.Telerik().Grid<CategoryModel>(Model.Categories.Data)
+                        .Name("category-grid")
+                        .ClientEvents(events => events.OnDataBinding("onDataBinding"))
+                        .Columns(columns =>
+                        {
+                            columns.Bound(c => c.Name).Width(150);
+                            columns.Bound(c=> c.ParentCategoryName)
+                                .Title(T("Products.Catalog.Fileds.ParentCategory").Text)
+                                .Width(150);
+                        })
+                        .Pageable(settings => settings.Total(Model.Categories.Total).PageSize(10).Position(GridPagerPosition.Both))
+                        .DataBinding(dataBinding => dataBinding.Ajax().Select("List", "Category"))
+                        .EnableCustomBinding(true)
+            )
+        </td>
+    </tr>
+</table>

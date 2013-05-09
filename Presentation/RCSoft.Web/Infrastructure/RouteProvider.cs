@@ -22,7 +22,11 @@ namespace RCSoft.Web.Infrastructure
                 new { controller = "CustomerRole", action = "List" },
                 new[] { "RCSoft.Web.Controllers" });
             #endregion
-
+            //角色列表
+            routes.MapLocalizedRoute("Category",
+                "Product/Category",
+                new { controller = "Category", action = "List" },
+                new[] { "RCSoft.Web.Controllers" });
             //routes.m
         }
 

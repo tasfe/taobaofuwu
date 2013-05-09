@@ -67,6 +67,7 @@
     <Compile Include="Data\DataSettingsManager.cs" />
     <Compile Include="Data\IDataProvider.cs" />
     <Compile Include="Data\IRepository.cs" />
+    <Compile Include="Domain\Products\Category.cs" />
     <Compile Include="Domain\Customer.cs" />
     <Compile Include="Domain\Customers\CustomerRole.cs" />
     <Compile Include="Domain\Localization\ILocalizedEntity.cs" />
