@@ -80,6 +80,47 @@ textarea
 .throbber .curtain-content{position:absolute;left:0;top:0;width:100%;height:100%;}
 .throbber .curtain-content div{text-align:center;padding:250px;color:#FFF;}
 
+body,h1,h2,h3,h4,h5,h6,address,blockquote,dd,dl,hr,form,input{margin:0;padding:0;}
+body{font-family:arial, verdana, helvetica, sans-serif;font-size:12px;}
+hr{border-bottom:1px solid #CCC;color:#FFF;}
+label.forcheckbox{margin:0 0 0 .4em;display:inline;}
+/* LINKS */
+a{color:#009FFF;text-decoration:none;font-weight:700;}
+a:hover{text-decoration:underline;color:#009FFF;font-weight:700;}
+a img{border:0;}
+.header-menu a{font-weight:400;}
+.header-menu a:hover{font-weight:400;}
+/* IMAGES */
+img{border:none;}
+/* SECTION HEADERS */
+.section-title{border-bottom:solid 3px #dfdfdf;padding-bottom:1px;margin-bottom:10px;color:#009FFF;font-size:14px;font-weight:700;vertical-align:bottom;}
+.section-title img{vertical-align:middle;padding-bottom:2px;}
+.section-header .title a{text-decoration:none;font-size:11px;color:#555;text-transform:none;}
+.section-header{border-bottom:solid 3px #dfdfdf;padding-bottom:1px;margin-bottom:10px;height:25px;}
+.section-header .title{float:left;color:#009FFF;font-size:14px;font-weight:700;vertical-align:bottom;padding-top:5px;text-transform:capitalize;}
+.section-header .title img{vertical-align:middle;padding-bottom:2px;}
+.section-header .options{text-align:right;float:right;}
+
+/* TABLES*/
+table.adminContent{border-collapse:collapse;color:#333;font-size:12px;margin:0;width:100%;vertical-align:middle;text-align:left;}
+table.adminContent td.adminTitle{padding:4px;}
+table.adminContent td.adminData{padding:4px;}
+td.adminTitle{text-align:left;vertical-align:middle;white-space:nowrap;width:195px;}
+td.adminTitle img{vertical-align:bottom;padding-right:2px;}
+td.adminData{text-align:left;vertical-align:middle;}
+td.adminData .text-box.single-line{border:1px solid #A7BAC5;width:250px;padding:2px;}
+.t-grid .text-box.single-line{border:1px solid #A7BAC5;padding:2px;}
+td.adminData textarea{border:1px solid #ACACAC;width:250px;padding:2px;}
+td.adminData .t-combobox{width:256px;}
+td.adminData .t-numerictextbox .t-input{border:1px solid #ACACAC;width:250px;padding:2px;}
+tr.adminSeparator hr{background-color:#D3D3D3;border:medium none;color:#D3D3D3;height:1px;margin-top:10px;margin-bottom:10px;padding:0;}
+span.nop-tooltip{white-space:nowrap;}
+
+/* LINKS */
+a{color:#009FFF;text-decoration:none;font-weight:700;}
+a:hover{text-decoration:underline;color:#009FFF;font-weight:700;}
+a img{border:0;}
+
 /* Telerik overrides */
 body .t-content.t-state-active{padding:10px!important;}
 body .t-tabstrip{margin-bottom:10px!important;}
@@ -87,3 +128,24 @@ body .t-button{font-weight:400;color:inherit!important;text-decoration:none;}
 /* Telerik overrides */
 .form-actions{overflow:hidden;padding-top:1em;}
 .form-actions .t-button,.form-actions .t-button button{float:right;margin-left:10px;padding:2px 15px;}
+
+/* MASTER PAGE WAPPERS*/
+.master-wrapper-page{}
+.master-wapper-content{}
+
+/* MASTER HEADER*/
+.header{height:70px;width:100%;background:url(images/header-bg.gif) repeat-x;position:relative;}
+.header .logo{display:block;text-decoration:none;font-size:xx-large; color:White;}
+.header .links{position:absolute;right:10px;top:7px;text-align:right;}
+.header .links .separator{color:#FFF;padding:0 3px;}
+.header .login-info{position:absolute;right:5px;top:35px;text-align:right;color:#e7e7e7;font-size:10px;}
+.header .login-info .a{color:#009FFF;text-decoration:none;font-weight:700;}
+.header .version{position:absolute;right:5px;top:55px;text-align:right;color:#e7e7e7;font-size:10px;}
+
+/* MASTER HEADER MENU */
+.header-menu{width:100%;background:url(images/admin-menu-bg.gif) repeat-x;text-transform:capitalize;}
+.header-menu .t-menu .t-link{padding:.6em .97em;}
+.header-menu .t-menu .t-arrow-next{top:7px;}
+
+/* MASTER CONTENT */
+.content .cph{padding:20px 15px 5px;}

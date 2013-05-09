@@ -14,6 +14,7 @@ using RCSoft.Core.Data;
 using RCSoft.Data;
 using RCSoft.Services.Localization;
 using Autofac.Core;
+using RCSoft.Services.Products;
 
 namespace RCSoft.Web.Framework
 {
@@ -71,9 +72,12 @@ namespace RCSoft.Web.Framework
             builder.RegisterType<RoutePublisher>().As<IRoutePublisher>().SingleInstance();
             //builder.RegisterControllers(typeFinder.GetAssemblies().ToArray());
             builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerHttpRequest();
+            builder.RegisterType<CategoryService>().As<ICategoryService>().InstancePerHttpRequest();
 
             builder.RegisterType<LocalizationService>().As<ILocalizationService>()
                 .InstancePerHttpRequest();
+
+            builder.RegisterType<TelerikLocalizationServiceFactory>().As<Telerik.Web.Mvc.Infrastructure.ILocalizationServiceFactory>().InstancePerHttpRequest();
         }
 
         public int Order

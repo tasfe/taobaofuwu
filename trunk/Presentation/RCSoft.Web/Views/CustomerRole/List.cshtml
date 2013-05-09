@@ -6,17 +6,21 @@
 @{
     ViewBag.Title = @T("Customers.CustomerRole").Text;
 }
-<div>
-    <div>
+<div class="section-header">
+    <div class="title">
+        <img src="@Url.Content("~/Content/images/ico-customers.png")" alt="" />
+        @T("Customers.CustomerRole")
+    </div>
+    <div class="options">
         <a href="@Url.Action("Create")" class="t-button">@T("Common.AddNew")</a>
     </div>
 </div>
 <table width="100%">
     <tr>
-        <td style="width:150px;">
+        <td class="adminTitle">
             @Html.RCSoftLabelFor(model => model.SearchRoleName):
         </td>
-        <td  style="text-align:left;">
+        <td class="adminData">
             @Html.EditorFor(model => Model.SearchRoleName)
         </td>
     </tr>
@@ -27,7 +31,7 @@
     </tr>
 </table>
 <p></p>
-<table>
+<table class="adminContent">
     <tr>
         <td>
             @(Html.Telerik().Grid<CustomerRoleModel>(Model.CustomerRoles.Data)

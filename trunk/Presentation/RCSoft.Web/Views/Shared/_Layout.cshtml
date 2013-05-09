@@ -1,9 +1,24 @@
 ﻿@using Telerik.Web.Mvc.UI;
 @using Telerik.Web.Mvc;
+@{
+    string adminPageTitle = "";
+    if (RCSoft.Core.Data.DataSettingsHelper.DatabaseIsInstalled())
+    {
+        if (!String.IsNullOrWhiteSpace(ViewBag.Title))
+        {
+            adminPageTitle = ViewBag.Title;
+        }
+        adminPageTitle = @T("SiteName").Text + " - " + adminPageTitle;
+    }
+    else
+    {
+        adminPageTitle = ViewBag.Title;
+    }
+}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>@ViewBag.Title</title>
+    <title>@adminPageTitle</title>
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
@@ -13,8 +28,51 @@
 </head>
 
 <body>
-    @RenderBody()
-
+    <div class="master-wrapper-page">
+        <div class="master-wrapper-content">
+            @{
+                if (RCSoft.Core.Data.DataSettingsHelper.DatabaseIsInstalled())
+                {
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#restart-application").click(function (e) {
+                        showThrobber('@T("Header.RestartApplication.Progress")');
+                    })
+                })
+            </script>
+            <div class="header">
+                <div class="logo">
+                    @T("SiteName").Text
+                </div>
+                <div class="links">
+                    @Html.ActionLink(T("Header.Settings").Text, "Index", "Settings")
+                    <span class="separator">|</span>
+                    @Html.ActionLink(T("Header.Versions").Text, "Index", "Versions")
+                    <span class="separator">|</span>
+                    @Html.ActionLink(T("Header.Helper").Text, "Index", "Helper")
+                </div>
+                <div class="login-info">
+                    @string.Format(T("Header.LoggedInAs").Text, "客户"),
+                    @Html.ActionLink(T("Header.Logout").Text, "Logout", "Customer")
+                </div>
+                <div class="version">
+                    <span>RCSoft 高级版</span>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+            <div class="header-menu">
+                @Html.Partial("Menu")
+            </div>
+                }
+                }
+            <div class="content">
+                <div class="cph">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
     @(Html.Telerik().StyleSheetRegistrar()
                     .DefaultGroup(group=>group
                         .Add("telerik.common.min.css")

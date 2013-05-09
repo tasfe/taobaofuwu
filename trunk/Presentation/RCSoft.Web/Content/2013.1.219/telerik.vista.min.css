@@ -14,7 +14,7 @@
 .t-active-filter{background-color:#ceeefd}
 .t-state-hover,.t-state-hover:hover{background-color:#e3f4fc;border-color:#a7bac5}
 .t-state-active{background-color:#fff;border-color:#a7bac5}
-.t-state-selected{background-color:#c8e8f8}
+.t-state-selected{}
 .t-state-focused{background-color:#90c5e1}
 .t-dropdown .t-state-focused{border-color:#6bd5f4;background:#6bd5f4 url('Vista/sprite.png') repeat-x 0 -752px}
 .t-state-error,.t-widget.t-state-error,.t-widget .t-state-error,.t-widget.input-validation-error,.t-widget .input-validation-error{border-color:#f00;background-color:#ffc0cb}

@@ -107,7 +107,7 @@ namespace RCSoft.Web.Controllers
             return View(model);
         }
 
-        [HttpPost, ParameterBasedOnFormNameAttribute("save-continuee", "continueEditing")]
+        [HttpPost, ParameterBasedOnFormNameAttribute("save-continue", "continueEditing")]
         public ActionResult Create(CustomerRoleModel model, bool continueEditing)
         {
             if (ModelState.IsValid)

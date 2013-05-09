@@ -72,9 +72,20 @@ namespace RCSoft.Services.Localization
             throw new NotImplementedException();
         }
 
-        public Dictionary<string, KeyValuePair<int, string>> GetAllResourceValues(int languageId)
+        public Dictionary<string, KeyValuePair<int, string>> GetAllResourceValues()
         {
-            throw new NotImplementedException();
+            var query = from l in _lsrRepository.Table
+                        orderby l.ResourceName
+                        select l;
+            var locales = query.ToList();
+            var dictionary = new Dictionary<string, KeyValuePair<int, string>>();
+            foreach (var locale in locales)
+            {
+                var resourceName = locale.ResourceName.ToLowerInvariant();
+                if (!dictionary.ContainsKey(resourceName))
+                    dictionary.Add(resourceName, new KeyValuePair<int, string>(locale.Id, locale.ResourceValue));
+            }
+            return dictionary;
         }
 
         public virtual string GetResource(string resourceKey)
