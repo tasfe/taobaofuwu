@@ -83,19 +83,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_GlobalResources\EditorLocalization.zh-CN.designer.cs" />
     <Compile Include="App_GlobalResources\EditorLocalization.zh-CN1.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EditorLocalization.zh-CN.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\GridLocalization.zh-CN.designer.cs" />
     <Compile Include="App_GlobalResources\GridLocalization.zh-CN1.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GridLocalization.zh-CN.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\UploadLocalization.zh-CN.designer.cs" />
     <Compile Include="App_GlobalResources\UploadLocalization.zh-CN1.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -498,6 +495,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Category\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Category\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Category\_CreateOrUpdate.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

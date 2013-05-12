@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using RCSoft.Services.Products;
 using RCSoft.Services.Localization;
 using RCSoft.Web.Models.Products;
+using RCSoft.Core.Domain.Products;
 using Telerik.Web.Mvc;
 using System.Web.Mvc;
+using Telerik.Web.Mvc.UI;
+using RCSoft.Web.Framework.Controllers;
 
 namespace RCSoft.Web.Controllers
 {
@@ -24,6 +27,26 @@ namespace RCSoft.Web.Controllers
         }
         #endregion
 
+        #region Ajax
+        public ActionResult AllCategories(string text, int selectedId)
+        {
+            var category = _categoryService.GetAllCategoriesByParentCategoryId(0);
+            category.Insert(0, new Category { Name = "[根目录]", Id = 0 });
+            var selectList = new List<SelectListItem>();
+            foreach (var c in category)
+            {
+                selectList.Add(new SelectListItem()
+                    {
+                        Value = c.Id.ToString(),
+                        Text = c.Name,
+                        Selected = c.Id == selectedId
+                    });
+            }
+
+            return new JsonResult { Data = selectList, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+        #endregion
+
         #region 方法
         public ActionResult List()
         {
@@ -35,11 +58,44 @@ namespace RCSoft.Web.Controllers
                 {
                     var categoryModel = c.ToModel();
                     categoryModel.ParentCategoryName = c.ParentCategoryId == 0 ? "" : _categoryService.GetCategoryById(c.ParentCategoryId).Name;
+                    categoryModel.PictureUrl = string.IsNullOrEmpty(c.PictureUrl) ? "~/Content/images/noDefaultImage.gif" : c.PictureUrl;
                     return categoryModel;
                 }),
 
                 Total = categories.TotalCount
             };
+            return View(model);
+        }
+
+        public ActionResult Create()
+        {
+            var model = new CategoryModel();
+            model.IsDeleted = false;
+            //父角色
+            model.ParentCategories = new List<DropDownItem> { new DropDownItem { Text = "[根目录]", Value = "0" } };
+            if (model.ParentCategoryId > 0)
+            {
+                var parentCategroy = _categoryService.GetCategoryById(model.ParentCategoryId);
+                if (parentCategroy != null)
+                    model.ParentCategories.Add(new DropDownItem { Text = parentCategroy.Name, Value = parentCategroy.Id.ToString() });
+                else
+                    model.ParentCategoryId = 0;
+            }
+            return View(model);
+        }
+
+        [HttpPost, ParameterBasedOnFormNameAttribute("save-continue", "continueEditing")]
+        public ActionResult Create(CategoryModel model, bool continueEditing)
+        {
+            if (ModelState.IsValid)
+            {
+                var category = model.ToEntity();
+                category.CreateDate = DateTime.Now;
+                category.UpdateDate = DateTime.Now;
+                _categoryService.InsertCategory(category);
+                SuccessNotification(_localizationService.GetResource("Customers.CustomerRoles.Added"));
+                return continueEditing ? RedirectToAction("Edit", new { id = category.Id }) : RedirectToAction("List");
+            }
             return View(model);
         }
         #endregion

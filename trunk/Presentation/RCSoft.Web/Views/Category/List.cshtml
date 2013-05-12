@@ -20,17 +20,29 @@
         <td>
             @(Html.Telerik().Grid<CategoryModel>(Model.Categories.Data)
                         .Name("category-grid")
-                        .ClientEvents(events => events.OnDataBinding("onDataBinding"))
                         .Columns(columns =>
                         {
                             columns.Bound(c => c.Name).Width(150);
                             columns.Bound(c=> c.ParentCategoryName)
                                 .Title(T("Products.Catalog.Fileds.ParentCategory").Text)
                                 .Width(150);
+                            columns.Bound(c => c.PictureUrl)
+                                .Template(c => string.Format("<img width='150' height='120' src='{0}'>", c.PictureUrl)).Width(158)
+                                .HtmlAttributes(new { style = "text-align:center" });
+                            columns.Bound(c => c.DisplayOrder).Width(80);
+                            columns.Bound(c => c.IsDeleted).Width(80).Template(c => c.IsDeleted ? "是" : "否");
+                            columns.Bound(c => c.Description).Width(250);
+                            columns.Bound(c => c.Id)
+                                .Template(c => Html.ActionLink(T("Common.Edit").Text, "Edit", new { id = c.Id }))
+                                .ClientTemplate("<a href=\"Edit/<#= Id #>\">" + T("Common.Edit").Text + "</a>")
+                                .Width(50)
+                                .HeaderTemplate(T("Common.Edit").Text)
+                                .Filterable(false);
                         })
                         .Pageable(settings => settings.Total(Model.Categories.Total).PageSize(10).Position(GridPagerPosition.Both))
                         .DataBinding(dataBinding => dataBinding.Ajax().Select("List", "Category"))
                         .EnableCustomBinding(true)
+                        
             )
         </td>
     </tr>
