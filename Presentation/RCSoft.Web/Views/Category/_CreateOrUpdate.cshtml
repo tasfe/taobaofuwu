@@ -1,0 +1,64 @@
+﻿@using RCSoft.Web.Models.Products;
+@using RCSoft.Web.Framework;
+@using Telerik.Web.Mvc.UI;
+@Html.ValidationSummary(true)
+@Html.HiddenFor(model=>model.Id)
+@model CategoryModel
+
+<table class="adminContent">
+    <tr>
+        <td  class="adminTitle">
+            @Html.RCSoftLabelFor(model => model.Name):
+        </td>
+        <td class="adminData">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </td>
+    </tr>
+    <tr>
+        <td class="adminTitle">
+            @Html.RCSoftLabelFor(model => model.ParentCategoryId):
+        </td>
+        <td class="adminData">
+            @(Html.Telerik().ComboBoxFor(x => x.ParentCategoryId).BindTo(Model.ParentCategories).Encode(true)
+                    .DataBinding(x => x.Ajax().Enabled(true).Select("AllCategories", "Category", new { selectedId = Model.ParentCategoryId })))
+        </td>
+    </tr>
+    <tr>
+        <td class="adminTitle">
+            @Html.RCSoftLabelFor(model => model.PictureUrl):
+        </td>
+        <td class="adminData">
+            <div><img width="100px" height="80px" src="" /></div>
+            @Html.Telerik().Upload().Name("CategoryPic").Multiple(false)
+        </td>
+    </tr>
+    <tr>
+        <td class="adminTitle">
+            @Html.RCSoftLabelFor(mode => mode.IsDeleted):
+        </td>
+        <td class="adminData">
+            @Html.EditorFor(model => model.IsDeleted)
+            @Html.ValidationMessageFor(model => model.IsDeleted)
+        </td>
+    </tr>
+    <tr>
+        <td class="adminTitle">
+            @Html.RCSoftLabelFor(mode => mode.DisplayOrder):
+        </td>
+        <td class="adminData">
+            @Html.Telerik().IntegerTextBoxFor(model => model.DisplayOrder)
+            @Html.ValidationMessageFor(model => model.DisplayOrder)
+        </td>
+    </tr>
+    <tr>
+        <td class="adminTitle">
+           @Html.RCSoftLabelFor(model => model.Description):
+        </td>
+        <td class="adminData">
+             @Html.Telerik().EditorFor(model => model.Description)
+             @Html.ValidationMessageFor(model => model.Description)
+        </td>
+    </tr>
+</table>
+

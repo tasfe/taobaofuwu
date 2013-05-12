@@ -5,6 +5,7 @@ using FluentValidation.Attributes;
 using RCSoft.Web.Validators.Products;
 using RCSoft.Web.Framework;
 using System.Web.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace RCSoft.Web.Models.Products
 {
@@ -19,6 +20,7 @@ namespace RCSoft.Web.Models.Products
         [AllowHtml]
         public int ParentCategoryId { get; set; }
 
+        [UIHint("Picture")]
         [RCSoftResourceDisplayName("Products.Catalog.Fileds.PictureUrl")]
         public string PictureUrl { get; set; }
 

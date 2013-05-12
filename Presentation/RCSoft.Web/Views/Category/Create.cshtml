@@ -1,0 +1,20 @@
+﻿@using RCSoft.Web.Models.Products;
+@model CategoryModel
+@{
+    ViewBag.Title = @T("Products.Catalog.AddNew").Text;
+}
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "categoryAdd-form" }))
+{
+    <div class="section-header">
+        <div class="title">
+            @T("Products.Catalog.AddNew")@Html.ActionLink("(" + @T("Products.Catalog.BackToList") + ")", "List")
+        </div>
+        <div class="options">
+            <input type="submit" name="save" class="t-button" value="@T("Common.Save")" />
+            <input type="submit" name="save-continue" class="t-button" value="@T("Common.SaveContinue")" />
+        </div>
+    </div>
+    <div>
+        @Html.Partial("_CreateOrUpdate", Model)
+    </div>
+}
