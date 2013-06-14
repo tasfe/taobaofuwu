@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using RCSoft.Core.Domain.Security;
 
 namespace RCSoft.Core.Domain.Customers
 {
     public partial class CustomerRole : BaseEntity
     {
+        private ICollection<PermissionRecord> _permissionRecords;
         /// <summary>
         /// 角色名称
         /// </summary>
@@ -26,5 +28,11 @@ namespace RCSoft.Core.Domain.Customers
         /// 角色描述
         /// </summary>
         public virtual string Description { get; set; }
+
+        public virtual ICollection<PermissionRecord> PermissionRecords
+        {
+            get { return _permissionRecords ?? (_permissionRecords = new List<PermissionRecord>()); }
+            protected set { _permissionRecords = value; }
+        }
     }
 }

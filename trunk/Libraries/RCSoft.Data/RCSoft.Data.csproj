@@ -56,6 +56,7 @@
     <Compile Include="Mapping\Customers\CustomerRoleMap.cs" />
     <Compile Include="Mapping\Localization\LocaleStringResourceMap.cs" />
     <Compile Include="Mapping\Products\CategoryMap.cs" />
+    <Compile Include="Mapping\Security\PermissionRecordMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RCSoftObjectContext.cs" />
     <Compile Include="SqlServerDataProvider.cs" />
