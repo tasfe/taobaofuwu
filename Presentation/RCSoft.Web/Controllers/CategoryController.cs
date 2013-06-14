@@ -9,6 +9,7 @@ using Telerik.Web.Mvc;
 using System.Web.Mvc;
 using Telerik.Web.Mvc.UI;
 using RCSoft.Web.Framework.Controllers;
+using RCSoft.Services.Security;
 
 namespace RCSoft.Web.Controllers
 {
@@ -17,13 +18,15 @@ namespace RCSoft.Web.Controllers
         #region 字段
         private readonly ICategoryService _categoryService;
         private readonly ILocalizationService _localizationService;
+        private readonly IPermissionService _permissionService;
         #endregion
 
         #region 构造函数
-        public CategoryController(ICategoryService categoryService, ILocalizationService localizationService)
+        public CategoryController(ICategoryService categoryService, ILocalizationService localizationService, IPermissionService permissionService)
         {
             this._categoryService = categoryService;
             this._localizationService = localizationService;
+            this._permissionService = permissionService;
         }
         #endregion
 
@@ -50,6 +53,8 @@ namespace RCSoft.Web.Controllers
         #region 方法
         public ActionResult List()
         {
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCatalog))
+                return AccessDeniedView();
             var model = new CategoryListModel();
             var categories = _categoryService.GetAllCategories(null, 0, 10, true);
             model.Categories = new GridModel<CategoryModel>

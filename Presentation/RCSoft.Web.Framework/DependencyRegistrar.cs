@@ -15,6 +15,7 @@ using RCSoft.Data;
 using RCSoft.Services.Localization;
 using Autofac.Core;
 using RCSoft.Services.Products;
+using RCSoft.Services.Security;
 
 namespace RCSoft.Web.Framework
 {
@@ -76,7 +77,7 @@ namespace RCSoft.Web.Framework
 
             builder.RegisterType<LocalizationService>().As<ILocalizationService>()
                 .InstancePerHttpRequest();
-
+            builder.RegisterType<PermissionService>().As<IPermissionService>().InstancePerHttpRequest();
             builder.RegisterType<TelerikLocalizationServiceFactory>().As<Telerik.Web.Mvc.Infrastructure.ILocalizationServiceFactory>().InstancePerHttpRequest();
         }
 
