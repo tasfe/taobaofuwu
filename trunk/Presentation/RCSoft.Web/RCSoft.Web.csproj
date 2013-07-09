@@ -342,7 +342,12 @@
     <Content Include="Content\images\ico-sales.png" />
     <Content Include="Content\images\ico-stat1.gif" />
     <Content Include="Content\images\install-synchronizing.gif" />
+    <Content Include="Content\images\login-end.png" />
+    <Content Include="Content\images\login-head.png" />
+    <Content Include="Content\images\login-mid.png" />
     <Content Include="Content\images\taobao.png" />
+    <Content Include="Content\images\user_login_name.gif" />
+    <Content Include="Content\images\user_login_password.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
