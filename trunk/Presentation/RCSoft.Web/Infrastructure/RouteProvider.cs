@@ -27,7 +27,22 @@ namespace RCSoft.Web.Infrastructure
                 "Product/Category",
                 new { controller = "Category", action = "List" },
                 new[] { "RCSoft.Web.Controllers" });
+
+            routes.MapLocalizedRoute("PasswordRecovery",
+                            "passwordrecovery",
+                            new { controller = "Customer", action = "PasswordRecovery" },
+                            new[] { "RCSoft.Web.Controllers" });
             //routes.m
+
+            routes.MapLocalizedRoute("Login",
+                "Login",
+                new { controller = "Customer", action = "Login" },
+                new[] { "RCSoft.Web.Controllers" });
+
+            routes.MapLocalizedRoute("Logout",
+                            "Logout",
+                            new { controller = "Customer", action = "Logout" },
+                            new[] { "RCSoft.Web.Controllers" });
         }
 
         public int Priority

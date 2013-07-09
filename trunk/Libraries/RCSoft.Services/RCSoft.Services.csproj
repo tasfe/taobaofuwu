@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,6 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication\External\ExternalAuthorizerHelper.cs" />
+    <Compile Include="Authentication\External\IExternalAuthenticationMethod.cs" />
+    <Compile Include="Authentication\External\IOpenAuthenticationService.cs" />
+    <Compile Include="Authentication\External\OpenAuthenticationParameters.cs" />
+    <Compile Include="Authentication\External\OpenAuthenticationService.cs" />
+    <Compile Include="Authentication\External\UserClaims.cs" />
+    <Compile Include="Authentication\FormsAuthenticationService.cs" />
+    <Compile Include="Authentication\IAuthenticationService.cs" />
+    <Compile Include="Configuration\ConfigurationProvider.cs" />
+    <Compile Include="Configuration\ISettingService.cs" />
+    <Compile Include="Configuration\SettingService.cs" />
+    <Compile Include="Customers\CustomerAuthenticationService.cs" />
+    <Compile Include="Customers\CustomerExtentions.cs" />
+    <Compile Include="Customers\ICustomerAuthenticationService.cs" />
     <Compile Include="Products\CategoryService.cs" />
     <Compile Include="Products\ICategoryService.cs" />
     <Compile Include="Customers\CustomerService.cs" />

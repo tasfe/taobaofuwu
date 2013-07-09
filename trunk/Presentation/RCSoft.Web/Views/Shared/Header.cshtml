@@ -1,0 +1,21 @@
+﻿@model HeaderModel
+@using RCSoft.Web.Models.Common;
+                <div class="logo">
+                    @T("SiteName").Text
+                </div>
+                <div class="links">
+                    @Html.ActionLink(T("Header.Settings").Text, "Index", "Settings")
+                    <span class="separator">|</span>
+                    @Html.ActionLink(T("Header.Versions").Text, "Index", "Versions")
+                    <span class="separator">|</span>
+                    @Html.ActionLink(T("Header.Helper").Text, "Index", "Helper")
+                </div>
+                <div class="login-info">
+                    @Html.Raw(string.Format(T("Header.LoggedInAs").Text, Html.ActionLink(Model.CustomerUsernameOrEmail, "CustomerInfo", "Customer"))),
+                    @Html.ActionLink(T("Header.Logout").Text, "Logout", "Customer")
+                </div>
+                <div class="version">
+                    <span>RCSoft 高级版</span>
+                </div>
+                <div class="clear">
+                </div>

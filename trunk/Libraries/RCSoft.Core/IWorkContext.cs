@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using RCSoft.Core.Domain;
+using RCSoft.Core.Domain.Customers;
 
 namespace RCSoft.Core
 {

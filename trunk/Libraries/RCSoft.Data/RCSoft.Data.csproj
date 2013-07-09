@@ -53,7 +53,10 @@
     <Compile Include="IDbContext.cs" />
     <Compile Include="IEfDataProvider.cs" />
     <Compile Include="Initializers\CreateTablesIfNotExist.cs" />
+    <Compile Include="Mapping\Configuration\SettingMap.cs" />
+    <Compile Include="Mapping\Customers\CustomerMap.cs" />
     <Compile Include="Mapping\Customers\CustomerRoleMap.cs" />
+    <Compile Include="Mapping\Customers\ExternalAuthenticationRecordMap.cs" />
     <Compile Include="Mapping\Localization\LocaleStringResourceMap.cs" />
     <Compile Include="Mapping\Products\CategoryMap.cs" />
     <Compile Include="Mapping\Security\PermissionRecordMap.cs" />

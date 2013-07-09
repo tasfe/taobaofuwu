@@ -73,6 +73,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\UserAuthorizeAttribute.cs" />
     <Compile Include="Controllers\ParameterBasedOnFormNameAttribute.cs" />
     <Compile Include="DependencyRegistrar.cs" />
     <Compile Include="Extensions.cs" />
@@ -93,6 +94,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RCSoftResourceDisplayName.cs" />
     <Compile Include="RCSoftValidatorFactory.cs" />
+    <Compile Include="Security\HttpsRequirementAttribute.cs" />
+    <Compile Include="Security\SslRequirement.cs" />
     <Compile Include="TelerikLocalizationService.cs" />
     <Compile Include="TelerikLocalizationServiceFactory.cs" />
     <Compile Include="Themes\ThemeableVirtualPathProviderViewEngine.cs" />

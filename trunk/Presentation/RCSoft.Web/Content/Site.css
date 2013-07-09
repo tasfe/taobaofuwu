@@ -115,7 +115,10 @@ td.adminData .t-combobox{width:256px;}
 td.adminData .t-numerictextbox .t-input{border:1px solid #ACACAC;width:250px;padding:2px;}
 tr.adminSeparator hr{background-color:#D3D3D3;border:medium none;color:#D3D3D3;height:1px;margin-top:10px;margin-bottom:10px;padding:0;}
 span.nop-tooltip{white-space:nowrap;}
-
+/*Login*/
+.username{BORDER-TOP-WIDTH: 0px; PADDING-LEFT: 25px; BORDER-LEFT-WIDTH: 0px; BACKGROUND: url(/Content/images/user_login_name.gif) no-repeat; BORDER-BOTTOM-WIDTH: 0px; WIDTH: 140px; LINE-HEIGHT: 20px; HEIGHT: 21px; BORDER-RIGHT-WIDTH: 0px}
+.password{BORDER-TOP-WIDTH: 0px; PADDING-LEFT: 25px; BORDER-LEFT-WIDTH: 0px; BACKGROUND: url(/Content/images/user_login_password.gif) no-repeat; BORDER-BOTTOM-WIDTH: 0px; WIDTH: 140px; LINE-HEIGHT: 20px; HEIGHT: 21px; BORDER-RIGHT-WIDTH: 0px}
+.login-button{width:55px;}
 /* LINKS */
 a{color:#009FFF;text-decoration:none;font-weight:700;}
 a:hover{text-decoration:underline;color:#009FFF;font-weight:700;}
