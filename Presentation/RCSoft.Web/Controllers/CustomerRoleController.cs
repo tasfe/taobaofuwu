@@ -12,6 +12,7 @@ using System;
 
 namespace RCSoft.Web.Controllers
 {
+    [UserAuthorize]
     public class CustomerRoleController : BaseController
     {
         #region 字段

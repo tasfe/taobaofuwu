@@ -14,12 +14,14 @@ namespace RCSoft.Services.Customers
         #endregion
 
         #region 字段
+        private readonly IRepository<Customer> _customerRepository;
         private readonly IRepository<CustomerRole> _customerRoleRepository;
         #endregion
 
         #region 构造函数
-        public CustomerService(IRepository<CustomerRole> customerRoleRepository)
+        public CustomerService(IRepository<Customer> customerRepository, IRepository<CustomerRole> customerRoleRepository)
         {
+            this._customerRepository = customerRepository;
             this._customerRoleRepository = customerRoleRepository;
         }
         #endregion
@@ -135,6 +137,78 @@ namespace RCSoft.Services.Customers
             _customerRoleRepository.Delete(customerRole);
         }
         #endregion 
+
+        #region 用户
+
+        /// <summary>
+        /// 创建用户
+        /// </summary>
+        /// <param name="customer">用户</param>
+        public virtual void InsertCustomer(Customer customer)
+        {
+            if(customer==null)
+                throw new ArgumentNullException("用户");
+            _customerRepository.Insert(customer);
+        }
+        /// <summary>
+        /// 更新用户
+        /// </summary>
+        /// <param name="customer">用户</param>
+        public virtual void UpdateCustomer(Customer customer)
+        {
+            if (customer == null)
+                throw new ArgumentNullException("用户");
+            _customerRepository.Update(customer);
+        }
+
+        /// <summary>
+        /// 根据ID获取用户
+        /// </summary>
+        /// <param name="customerId">用户Id</param>
+        /// <returns>一个用户</returns>
+        public virtual Customer GetCustomerById(int customerId)
+        {
+            if (customerId <= 0)
+                return null;
+            var customer = _customerRepository.GetById(customerId);
+            return customer;
+        }
+
+        /// <summary>
+        /// 根据Email查找用户
+        /// </summary>
+        /// <param name="email">Email</param>
+        /// <returns>用户</returns>
+        public virtual Customer GetCustomerByEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return null;
+
+            var query = from c in _customerRepository.Table
+                        orderby c.Id
+                        where c.Email == email
+                        select c;
+            var customer = query.FirstOrDefault();
+            return customer;
+        }
+        /// <summary>
+        /// 根据用户名获取用户
+        /// </summary>
+        /// <param name="username">用户名</param>
+        /// <returns>用户</returns>
+        public virtual Customer GetCustomerByUsername(string username)
+        {
+            if (string.IsNullOrWhiteSpace(username))
+                return null;
+
+            var query = from c in _customerRepository.Table
+                        orderby c.Id
+                        where c.Username == username
+                        select c;
+            var customer = query.FirstOrDefault();
+            return customer;
+        }
+        #endregion
         #endregion
     }
 }

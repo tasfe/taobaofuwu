@@ -8,6 +8,7 @@ using System.Data.Common;
 using System.Data;
 using System.Reflection;
 using System.Data.Entity.ModelConfiguration;
+using RCSoft.Data.Mapping.Customers;
 
 
 namespace RCSoft.Data

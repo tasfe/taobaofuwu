@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity.ModelConfiguration;
 using RCSoft.Core.Domain.Customers;
 
-namespace RCSoft.Data
+namespace RCSoft.Data.Mapping.Customers
 {
     public partial class CustomerRoleMap : EntityTypeConfiguration<CustomerRole>
     {

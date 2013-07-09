@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using RCSoft.Core.Domain.Security;
-using RCSoft.Core.Domain;
+using RCSoft.Core.Domain.Customers;
 
 namespace RCSoft.Services.Security
 {

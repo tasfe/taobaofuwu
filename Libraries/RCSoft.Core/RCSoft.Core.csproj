@@ -59,6 +59,8 @@
     <Compile Include="CollectionTExtensions.cs" />
     <Compile Include="CommonHelper.cs" />
     <Compile Include="ComponentModel\GenericListTypeConverter.cs" />
+    <Compile Include="ComponentModel\WriteLockDisposable.cs" />
+    <Compile Include="Configuration\IConfigurationProvider.cs" />
     <Compile Include="Configuration\ISettings.cs" />
     <Compile Include="Configuration\RCSoftConfig.cs" />
     <Compile Include="Data\BaseDataProviderManager.cs" />
@@ -67,8 +69,12 @@
     <Compile Include="Data\DataSettingsManager.cs" />
     <Compile Include="Data\IDataProvider.cs" />
     <Compile Include="Data\IRepository.cs" />
+    <Compile Include="Domain\Configuration\Setting.cs" />
+    <Compile Include="Domain\Customers\CustomerSettings.cs" />
+    <Compile Include="Domain\Customers\ExternalAuthenticationRecord.cs" />
+    <Compile Include="Domain\Customers\ExternalAuthenticationSettings.cs" />
     <Compile Include="Domain\Products\Category.cs" />
-    <Compile Include="Domain\Customer.cs" />
+    <Compile Include="Domain\Customers\Customer.cs" />
     <Compile Include="Domain\Customers\CustomerRole.cs" />
     <Compile Include="Domain\Localization\ILocalizedEntity.cs" />
     <Compile Include="Domain\Localization\LocaleStringResource.cs" />
@@ -102,6 +108,12 @@
     <Compile Include="IWorkContext.cs" />
     <Compile Include="PageList.cs" />
     <Compile Include="PersistentCollection.cs" />
+    <Compile Include="Plugins\IPlugin.cs" />
+    <Compile Include="Plugins\IPluginFinder.cs" />
+    <Compile Include="Plugins\PluginDescriptor.cs" />
+    <Compile Include="Plugins\PluginFileParser.cs" />
+    <Compile Include="Plugins\PluginFinder.cs" />
+    <Compile Include="Plugins\PluginManager.cs" />
     <Compile Include="RCSoftException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebHelper.cs" />

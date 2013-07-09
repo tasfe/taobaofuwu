@@ -6,9 +6,11 @@ using System.Web.Mvc;
 using RCSoft.Core.Infrastructure;
 using RCSoft.Core;
 using RCSoft.Web.Framework.UI;
+using RCSoft.Web.Framework.Security;
 
 namespace RCSoft.Web.Controllers
 {
+    [HttpsRequirement(SslRequirement.Yes)]
     public abstract partial class BaseController : Controller
     {
         private void LogException(Exception exc)

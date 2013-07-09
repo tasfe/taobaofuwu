@@ -3,7 +3,7 @@ using RCSoft.Core.Domain.Products;
 
 namespace RCSoft.Data.Mapping.Products
 {
-    public partial class CategoryMap:EntityTypeConfiguration<Category>
+    public partial class CategoryMap : EntityTypeConfiguration<Category>
     {
         public CategoryMap()
         {

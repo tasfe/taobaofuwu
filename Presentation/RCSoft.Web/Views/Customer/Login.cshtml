@@ -1,0 +1,112 @@
+﻿@using Telerik.Web.Mvc.UI;
+@using Telerik.Web.Mvc;
+@using RCSoft.Web.Models.Customers;
+@using RCSoft.Web.Framework;
+@model RCSoft.Web.Models.Customers.LoginModel
+@{
+    Layout = null;
+    ViewBag.Title = "用户登录";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/public.common.js")" type="text/javascript"></script>
+</head>
+
+<body style="width:100%;height:100%;background-color: #E6E6E5; text-align:center; vertical-align: middle;">
+<div style="">
+    <div style="">
+        <div style="margin:110px 0px 0px;"></div>
+        <div style="height:87px;background-position:center; background-image:url('/Content/images/login-head.png'); background-repeat:no-repeat">
+        </div>
+        <div style="margin-left:-1px;height:209px;background-position:center; background-image:url('/Content/images/login-mid.png'); background-repeat:repeat-y;text-align:center;">
+        <div>
+        @using (Html.BeginForm())
+        {
+            <table style="text-align:center;margin:auto;">
+                <tr>
+                    <td colspan="2" style="height:30px;text-align:left;">
+                        @Html.ValidationSummary(true, T("Account.Login.Unsuccessful").Text)
+                    </td>
+                </tr>
+                <tr>
+                    @if (Model.UsernameEnabled)
+                    {
+                        <td style="width:110px;height:34px;text-align:right; padding-right:10px;">
+                            @Html.LabelFor(model => model.Username):
+                        </td>
+                        <td style="text-align:left;width:250px;">
+                            @Html.TextBoxFor(model => Model.Username, new { @class = "username" })
+                        </td>
+                     }
+                     else
+                     {
+                        <td style="width:110px;height:34px;text-align:right; padding-right:10px;">
+                            @Html.LabelFor(model => model.Email):
+                        </td>
+                        <td style="text-align:left;width:250px;">
+                            @Html.TextBoxFor(model => Model.Email, new { @class = "username" })
+                        </td>
+                     }
+                </tr>
+                <tr>
+                    <td style="height:34px;text-align:right; padding-right:10px;">
+                        @Html.LabelFor(model => model.Password):
+                    </td>
+                    <td style="text-align:left;">
+                        @Html.PasswordFor(model => Model.Password, new { @class = "password" })
+                    </td>
+                </tr>
+                @if (Model.DisplayCaptcha)
+                {
+                    <tr>
+                        <td style="height:34px;text-align:right; padding-right:10px;">
+                             @Html.LabelFor(model => model.DisplayCaptcha):
+                        </td>
+                        <td style="text-align:left;">
+                            @Html.Display("等待使用插件")
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td style="height:34px;text-align:right; padding-right:10px;">
+                         @Html.LabelFor(model => model.RememberMe):
+                    </td>
+                    <td style="text-align:left;">
+                        @Html.CheckBoxFor(model => Model.RememberMe)
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:left;text-align:center;">
+                        <input class="t-button login-button" type="submit" value="@T("Account.Login.LoginButton")" />&nbsp;&nbsp;&nbsp;&nbsp;@Html.RouteLink(T("Account.Login.ForgotPassword").Text, "PasswordRecovery")
+                    </td>
+                </tr>
+            </table>
+        }
+        </div>
+        </div>
+        <div style="height:51px;background-position:center; background-image:url('/Content/images/login-end.png'); background-repeat:no-repeat">
+            @*<div style="text-align:right;margin:auto;display:inline-block;color:White;width:150px;padding-top:12px">使用网站合作账户登录：</div>
+            <div style="margin:auto;display:inline-block;line-height:25px;"><img src="/Content/images/taobao.png" style="vertical-align:bottom;" alt="淘宝登录" border="0" width="25px" height="25px" /></div>*@
+            @Html.Action("ExternalMethods","ExternalAuthentication")
+        </div>
+    </div>
+</div>
+
+@(Html.Telerik().StyleSheetRegistrar()
+                    .DefaultGroup(group=>group
+                        .Add("telerik.common.min.css")
+                        .Add("telerik.vista.min.css")
+                        .Add("telerik.rtl.min.css")))
+    @(Html.Telerik().ScriptRegistrar()
+                    .jQuery(false)
+                    .jQueryValidation(false))
+
+</body>
+</html>

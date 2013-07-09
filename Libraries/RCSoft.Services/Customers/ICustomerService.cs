@@ -6,6 +6,41 @@ namespace RCSoft.Services.Customers
 {
     public interface ICustomerService
     {
+        #region 用户
+        /// <summary>
+        /// 创建用户
+        /// </summary>
+        /// <param name="customer">用户</param>
+        void InsertCustomer(Customer customer);
+
+        /// <summary>
+        /// 更新用户
+        /// </summary>
+        /// <param name="customer">用户</param>
+        void UpdateCustomer(Customer customer);
+
+        /// <summary>
+        /// 根据ID获取用户
+        /// </summary>
+        /// <param name="customerId">用户Id</param>
+        /// <returns>一个用户</returns>
+        Customer GetCustomerById(int customerId);
+
+        /// <summary>
+        /// 根据Email查找用户
+        /// </summary>
+        /// <param name="email">Email</param>
+        /// <returns>用户</returns>
+        Customer GetCustomerByEmail(string email);
+
+        /// <summary>
+        /// 根据用户名获取用户
+        /// </summary>
+        /// <param name="username">用户名</param>
+        /// <returns>用户</returns>
+        Customer GetCustomerByUsername(string username);
+
+        #endregion
 
         #region 角色
         /// <summary>

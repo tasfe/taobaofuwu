@@ -2,9 +2,11 @@
 using RCSoft.Services.Security;
 using RCSoft.Services.Customers;
 using System.Web.Mvc;
+using RCSoft.Web.Framework.Controllers;
 
 namespace RCSoft.Web.Controllers
 {
+    [UserAuthorize]
     public partial class SecurityController : BaseController
     {
         #region 字段

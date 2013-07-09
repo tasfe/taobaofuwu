@@ -13,6 +13,7 @@ using RCSoft.Services.Security;
 
 namespace RCSoft.Web.Controllers
 {
+    [UserAuthorize]
     public class CategoryController : BaseController
     {
         #region 字段
@@ -53,8 +54,8 @@ namespace RCSoft.Web.Controllers
         #region 方法
         public ActionResult List()
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCatalog))
-                return AccessDeniedView();
+            //if (!_permissionService.Authorize(StandardPermissionProvider.ManageCatalog))
+            //    return AccessDeniedView();
             var model = new CategoryListModel();
             var categories = _categoryService.GetAllCategories(null, 0, 10, true);
             model.Categories = new GridModel<CategoryModel>

@@ -16,6 +16,7 @@
     }
 }
 <!DOCTYPE html>
+
 <html>
 <head>
     <title>@adminPageTitle</title>
@@ -41,25 +42,7 @@
                 })
             </script>
             <div class="header">
-                <div class="logo">
-                    @T("SiteName").Text
-                </div>
-                <div class="links">
-                    @Html.ActionLink(T("Header.Settings").Text, "Index", "Settings")
-                    <span class="separator">|</span>
-                    @Html.ActionLink(T("Header.Versions").Text, "Index", "Versions")
-                    <span class="separator">|</span>
-                    @Html.ActionLink(T("Header.Helper").Text, "Index", "Helper")
-                </div>
-                <div class="login-info">
-                    @string.Format(T("Header.LoggedInAs").Text, "客户"),
-                    @Html.ActionLink(T("Header.Logout").Text, "Logout", "Customer")
-                </div>
-                <div class="version">
-                    <span>RCSoft 高级版</span>
-                </div>
-                <div class="clear">
-                </div>
+                @Html.Action("Header","Common")
             </div>
             <div class="header-menu">
                 @Html.Partial("Menu")

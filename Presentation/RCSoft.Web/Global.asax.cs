@@ -11,6 +11,8 @@ using RCSoft.Web.Framework.Mvc;
 using RCSoft.Web.Framework.Mvc.Routes;
 using FluentValidation.Mvc;
 using RCSoft.Web.Framework;
+using System.Web.Security;
+using System.Security.Principal;
 
 namespace RCSoft.Web
 {
@@ -85,6 +87,21 @@ namespace RCSoft.Web
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
             EnsureDatabaseIsInstalled();
+        }
+        protected void Application_AuthorizeRequest(object sender,EventArgs e)
+        {
+            //var userId = Context.User.Identity as FormsIdentity;
+            //if (userId != null && userId.IsAuthenticated)
+            //{
+            //    var roles = userId.Ticket.UserData.Split(',');
+            //    Context.User = new GenericPrincipal(userId, roles);
+            //}
+            //else
+            //{
+            //    var webHelper = EngineContext.Current.Resolve<IWebHelper>();
+            //    string loginlUrl = string.Format("{0}Login", webHelper.GetStoreLocation());
+            //    this.Response.Redirect(loginlUrl);
+            //}
         }
         private void EnsureDatabaseIsInstalled()
         {
