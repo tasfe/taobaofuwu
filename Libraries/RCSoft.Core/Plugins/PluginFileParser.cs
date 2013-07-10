@@ -80,6 +80,9 @@ namespace RCSoft.Core.Plugins
                     case "FriendlyName":
                         descriptor.FriendlyName = value;
                         break;
+                    case "SystemName":
+                        descriptor.SystemName = value;
+                        break;
                     case "Version":
                         descriptor.Version = value;
                         break;

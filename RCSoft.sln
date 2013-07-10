@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCSoft.Core.Tests", "Tests\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCSoft.Data.Tests", "Tests\RCSoft.Data.Tests\RCSoft.Data.Tests.csproj", "{FFFA1894-594F-40A0-8A63-594BE3311364}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{5F5D7D4E-25C7-48A8-A486-4524B4636EF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCSoft.Plugin.ExternalAuth.Taobao", "Plugins\RCSoft.Plugin.ExternalAuth.Taobao\RCSoft.Plugin.ExternalAuth.Taobao.csproj", "{35BB82FD-607B-4C94-A9EF-BDB4DD7A326E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +65,10 @@ Global
 		{FFFA1894-594F-40A0-8A63-594BE3311364}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFFA1894-594F-40A0-8A63-594BE3311364}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFFA1894-594F-40A0-8A63-594BE3311364}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35BB82FD-607B-4C94-A9EF-BDB4DD7A326E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35BB82FD-607B-4C94-A9EF-BDB4DD7A326E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35BB82FD-607B-4C94-A9EF-BDB4DD7A326E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35BB82FD-607B-4C94-A9EF-BDB4DD7A326E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,5 +82,6 @@ Global
 		{9A996CFA-B30B-466A-AB3B-D4D8AD9937A0} = {6DD5D270-2A50-421D-9A74-C226159A3F0D}
 		{490D6606-5A15-42ED-8D7D-7042AE71665C} = {6DD5D270-2A50-421D-9A74-C226159A3F0D}
 		{FFFA1894-594F-40A0-8A63-594BE3311364} = {6DD5D270-2A50-421D-9A74-C226159A3F0D}
+		{35BB82FD-607B-4C94-A9EF-BDB4DD7A326E} = {5F5D7D4E-25C7-48A8-A486-4524B4636EF1}
 	EndGlobalSection
 EndGlobal
