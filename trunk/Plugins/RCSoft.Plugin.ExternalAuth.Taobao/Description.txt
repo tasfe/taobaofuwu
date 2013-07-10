@@ -1,0 +1,8 @@
+﻿Group: ExternalAuth methods
+FriendlyName: Taobao
+SystemName: ExternalAuth.Taobao
+Version: 1.0
+SupportedVersions: 1.0
+Author: RCSoft team
+DisplayOrder: 1
+FileName: RCSoft.Plugin.ExternalAuth.Taobao.dll
