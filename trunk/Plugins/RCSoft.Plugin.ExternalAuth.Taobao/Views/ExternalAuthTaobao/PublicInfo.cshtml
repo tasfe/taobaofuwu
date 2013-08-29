@@ -1,2 +1,6 @@
-﻿<div style="text-align:right;margin:auto;display:inline-block;color:White;width:150px;padding-top:12px">使用网站合作账户登录：</div>
-            <div style="margin:auto;display:inline-block;line-height:25px;"><img src="/Content/images/taobao.png" style="vertical-align:bottom;" alt="淘宝登录" border="0" width="25px" height="25px" /></div>
+﻿@using RCSoft.Web.Framework.UI
+@{
+    Layout = "";   
+ }
+<div style="text-align:right;margin:auto;display:inline-block;color:White;width:150px;padding-top:12px">@T("Plugins.ExternalAuth.Taobao.Login")</div>
+            <div style="margin:auto;display:inline-block;line-height:25px;"><a href="@Url.RouteUrl("Plugin.ExternalAuth.Taobao.Login", new { ReturnUrl = HttpContext.Current.Request.QueryString["ReturnUrl"] })"><img src="/Content/images/taobao.png" style="vertical-align:bottom;" alt="淘宝登录" border="0" width="25px" height="25px" /></a></div>
