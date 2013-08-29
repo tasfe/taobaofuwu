@@ -98,6 +98,7 @@
     <Compile Include="Security\SslRequirement.cs" />
     <Compile Include="TelerikLocalizationService.cs" />
     <Compile Include="TelerikLocalizationServiceFactory.cs" />
+    <Compile Include="Themes\IThemeContext.cs" />
     <Compile Include="Themes\ThemeableVirtualPathProviderViewEngine.cs" />
     <Compile Include="UI\LayoutExtensions.cs" />
     <Compile Include="UI\NotifyType.cs" />
