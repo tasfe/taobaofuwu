@@ -51,6 +51,13 @@ namespace RCSoft.Services.Configuration
         IDictionary<string, KeyValuePair<int, string>> GetAllSettings();
 
         /// <summary>
+        /// 保存配置项
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <param name="settingInstance"></param>
+        void SaveSetting<T>(T settingInstance) where T : ISettings, new();
+
+        /// <summary>
         /// 删除所有设置项
         /// </summary>
         /// <typeparam name="T">类型</typeparam>

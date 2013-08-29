@@ -27,7 +27,7 @@ namespace RCSoft.Services.Configuration
                              where setting != null
                              where CommonHelper.GetRCSoftCustomTypeConverter(prop.PropertyType).CanConvertFrom(typeof(string))
                              where CommonHelper.GetRCSoftCustomTypeConverter(prop.PropertyType).IsValid(setting)
-                             let value = CommonHelper.GetRCSoftCustomTypeConverter(prop.PropertyType).ConvertToInvariantString(setting)
+                             let value = CommonHelper.GetRCSoftCustomTypeConverter(prop.PropertyType).ConvertFromInvariantString(setting)
                              select new { prop, value };
             properties.ToList().ForEach(p => p.prop.SetValue(Settings, p.value, null));
         }
