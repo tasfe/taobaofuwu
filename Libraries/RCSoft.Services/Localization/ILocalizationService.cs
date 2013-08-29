@@ -22,18 +22,17 @@ namespace RCSoft.Services.Localization
         LocaleStringResource GetLocaleStringResourceById(int localeStringResourceId);
 
         /// <summary>
-        /// Gets a locale string resource
+        /// 获取一个本地化资源
         /// </summary>
         /// <param name="resourceName">A string representing a resource name</param>
         /// <returns>Locale string resource</returns>
         LocaleStringResource GetLocaleStringResourceByName(string resourceName);
 
         /// <summary>
-        /// Gets a locale string resource
+        /// 获取一个本地化资源
         /// </summary>
-        /// <param name="resourceName">A string representing a resource name</param>
-        /// <param name="languageId">Language identifier</param>
-        /// <param name="logIfNotFound">A value indicating whether to log error if locale string resource is not found</param>
+        /// <param name="resourceName">名称</param>
+        /// <param name="logIfNotFound">如果资源不存在是否抛出异常</param>
         /// <returns>Locale string resource</returns>
         LocaleStringResource GetLocaleStringResourceByName(string resourceName, bool logIfNotFound = true);
 

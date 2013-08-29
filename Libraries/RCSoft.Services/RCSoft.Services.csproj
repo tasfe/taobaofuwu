@@ -34,6 +34,10 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\aspnetmvc\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,11 +45,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication\External\AuthorizationResult.cs" />
+    <Compile Include="Authentication\External\AuthorizeState.cs" />
+    <Compile Include="Authentication\External\ExternalAuthorizer.cs" />
     <Compile Include="Authentication\External\ExternalAuthorizerHelper.cs" />
     <Compile Include="Authentication\External\IExternalAuthenticationMethod.cs" />
+    <Compile Include="Authentication\External\IExternalAuthorizer.cs" />
+    <Compile Include="Authentication\External\IExternalProviderAuthorizer.cs" />
     <Compile Include="Authentication\External\IOpenAuthenticationService.cs" />
+    <Compile Include="Authentication\External\OpenAuthenticationExtentions.cs" />
     <Compile Include="Authentication\External\OpenAuthenticationParameters.cs" />
     <Compile Include="Authentication\External\OpenAuthenticationService.cs" />
+    <Compile Include="Authentication\External\OpenAuthenticationStatus.cs" />
     <Compile Include="Authentication\External\UserClaims.cs" />
     <Compile Include="Authentication\FormsAuthenticationService.cs" />
     <Compile Include="Authentication\IAuthenticationService.cs" />
