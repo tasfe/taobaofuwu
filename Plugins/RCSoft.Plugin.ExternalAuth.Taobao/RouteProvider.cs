@@ -19,6 +19,11 @@ namespace RCSoft.Plugin.ExternalAuth.Taobao
                  new { controller = "ExternalAuthTaobao", action = "Login" },
                  new[] { "RCSoft.Plugin.ExternalAuth.Taobao.Controllers" }
                  );
+            routes.MapRoute("Plugin.ExternalAuth.Taobao.Auth",
+                "Plugins/ExternalAuthTaobao/Auth",
+                new { controller = "ExternalAuthTaobao", action = "Authorizer" },
+                 new[] { "RCSoft.Plugin.ExternalAuth.Taobao.Controllers"}
+                 );
         }
 
         public int Priority
