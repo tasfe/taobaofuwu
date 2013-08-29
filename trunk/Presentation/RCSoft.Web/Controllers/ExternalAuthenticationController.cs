@@ -25,7 +25,7 @@ namespace RCSoft.Web.Controllers
             ExternalAuthorizerHelper.RemoveParameters();
             return Redirect(returnUrl);
         }
-
+        [ChildActionOnly]
         public ActionResult ExternalMethods()
         {
             var model = new List<ExternalAuthenticationMethodModel>();
