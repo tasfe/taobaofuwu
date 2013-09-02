@@ -14,13 +14,15 @@ namespace RCSoft.Plugin.ExternalAuth.Taobao.Controllers
         private readonly IOAuthProviderTaobaoAuthorizer _oAuthProviderTaobaoAuthorizer;
         private readonly IOpenAuthenticationService _openAuthenticationService;
         private readonly ExternalAuthenticationSettings _externalAuthenticationSettings;
+        private readonly IWorkContext _workContext;
 
-        public ExternalAuthTaobaoController(ISettingService settingService,IOAuthProviderTaobaoAuthorizer oAuthProviderTaobaoAuthorizer,IOpenAuthenticationService openAuthenticationService,ExternalAuthenticationSettings externalAuthenticationiSettings)
+        public ExternalAuthTaobaoController(ISettingService settingService,IOAuthProviderTaobaoAuthorizer oAuthProviderTaobaoAuthorizer,IOpenAuthenticationService openAuthenticationService,ExternalAuthenticationSettings externalAuthenticationiSettings,IWorkContext workContext)
         {
             this._settingService = settingService;
             this._oAuthProviderTaobaoAuthorizer = oAuthProviderTaobaoAuthorizer;
             this._externalAuthenticationSettings = externalAuthenticationiSettings;
             this._openAuthenticationService = openAuthenticationService;
+            this._workContext = workContext;
         }
 
         [ChildActionOnly]
@@ -46,6 +48,8 @@ namespace RCSoft.Plugin.ExternalAuth.Taobao.Controllers
         public ActionResult Authorizer(string returnUrl, string code, string state)
         {
             var result = _oAuthProviderTaobaoAuthorizer.Authorize(returnUrl,code);
+            if (_workContext.CurrentCustomer != null)
+                return new RedirectResult("~/");
             return View();
         }
     }

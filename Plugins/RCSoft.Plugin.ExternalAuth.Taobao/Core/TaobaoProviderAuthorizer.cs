@@ -5,6 +5,8 @@ using Top.Api.Request;
 using Top.Api.Response;
 using System.Collections.Generic;
 using Top.Api.Util;
+using Jayrock.Json;
+using System.IO;
 
 namespace RCSoft.Plugin.ExternalAuth.Taobao.Core
 {
@@ -39,21 +41,34 @@ namespace RCSoft.Plugin.ExternalAuth.Taobao.Core
             param.Add("redirect_uri", "http://localhost:3844/");
             param.Add("view", "web");
             WebUtils webutils = new WebUtils();
-            string responseJosn = webutils.DoPost(TaobaoApplication.SiteUrl + "token", param);
+            string responseJosn = webutils.DoPost(Provider.AccessTokenURL, param);
+            JsonReader reader = new JsonTextReader(new StringReader(responseJosn));
+            JsonObject json=new JsonObject();
+            json.Import(reader);
+            var parameters = new OAuthAuthenticationParameters(Provider.SystemName) 
+            {
+                ExternalIdentifier = json["taobao_user_id"].ToString(),
+                OAuthToken = json["refresh_token"].ToString(),
+                OAuthAccessToken = json["access_token"].ToString(),
+                ExternalDisplayIdentifier = json["taobao_user_nick"].ToString()
+            };
+            var result = _authorizer.Authorize(parameters);
 
-            ITopClient myTopClient = new DefaultTopClient(TaobaoApplication.SiteUrl, TaobaoApplication.AppId, TaobaoApplication.AppSecret);
-            UserSellerGetRequest req = new UserSellerGetRequest();
-            req.Fields = "nick,user_id,type";
-            UserSellerGetResponse rsp = myTopClient.Execute(req, "sandbox_b_00");//执行API请求并将该类转换为response对象
-            if (rsp.IsError)
-                return new AuthorizeState(returnUrl, OpenAuthenticationStatus.Error);
-            else
-                return new AuthorizeState(returnUrl, OpenAuthenticationStatus.Authenticated);
+            return new AuthorizeState(returnUrl, result);
+            //var customerToken = json.(responseJosn);
+            //ITopClient myTopClient = new DefaultTopClient(TaobaoApplication.SiteUrl, TaobaoApplication.AppId, TaobaoApplication.AppSecret);
+            //UserSellerGetRequest req = new UserSellerGetRequest();
+            //req.Fields = "nick,user_id,type";
+            //UserSellerGetResponse rsp = myTopClient.Execute(req, "sandbox_b_00");//执行API请求并将该类转换为response对象
+            //if (rsp.IsError)
+            //    return new AuthorizeState(returnUrl, OpenAuthenticationStatus.Error);
+            //else
+            //    return new AuthorizeState(returnUrl, OpenAuthenticationStatus.Authenticated);
         }
 
         public string RedirectLoginUrl(string returnUrl)
         {
-            return TaobaoApplication.SiteUrl + "authorize" + "?response_type=code&view=web&client_id=" + TaobaoApplication.AppId + "&redirect_uri=http://localhost:3844/Plugins/ExternalAuthTaobao/Auth";
+            return Provider.Authorize + "?response_type=code&view=web&client_id=" + TaobaoApplication.AppId + "&redirect_uri=http://localhost:3844/Plugins/ExternalAuthTaobao/Auth";
         }
     }
 }
