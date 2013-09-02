@@ -59,6 +59,8 @@
   <ItemGroup>
     <Compile Include="Controllers\ExternalAuthTaobaoController.cs" />
     <Compile Include="Core\IOAuthProviderTaobaoAuthorizer.cs" />
+    <Compile Include="Core\OAuthAuthenticationParameters.cs" />
+    <Compile Include="Core\Provider.cs" />
     <Compile Include="Core\TaobaoApplication.cs" />
     <Compile Include="Core\TaobaoProviderAuthorizer.cs" />
     <Compile Include="DependencyRegistrar.cs" />

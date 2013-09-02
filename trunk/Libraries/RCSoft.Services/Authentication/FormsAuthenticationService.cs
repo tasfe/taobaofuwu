@@ -12,6 +12,7 @@ namespace RCSoft.Services.Authentication
         private readonly ICustomerService _customerService;
         private readonly CustomerSettings _customerSetting;
         private TimeSpan _expirationTimeSpan;
+        private Customer _cachedCustomer;
 
         public FormsAuthenticationService(HttpContextBase httpContext, CustomerSettings customerSetting, ICustomerService customerService)
         {
@@ -47,15 +48,19 @@ namespace RCSoft.Services.Authentication
                 cookie.Domain = FormsAuthentication.CookieDomain;
             }
             _httpContext.Response.Cookies.Add(cookie);
+            _cachedCustomer = customer;
         }
 
         public void SignOut()
         {
+            _cachedCustomer=null;
             FormsAuthentication.SignOut();
         }
 
         public Customer GetAuthenticateCustomer()
         {
+            if (_cachedCustomer != null)
+                return _cachedCustomer;
             if (_httpContext == null || _httpContext.Request == null || !_httpContext.Request.IsAuthenticated || !(_httpContext.User.Identity is FormsIdentity))
             {
                 return null;
@@ -64,9 +69,9 @@ namespace RCSoft.Services.Authentication
             var customer = GetAuthenticateCustomerFormTicket(formsIdentity.Ticket);
             if (customer != null && !customer.Deleted && customer.Active)
             {
-                return customer;
+                _cachedCustomer = customer;
             }
-            return null;
+            return _cachedCustomer;
         }
 
         public virtual Customer GetAuthenticateCustomerFormTicket(FormsAuthenticationTicket ticket)

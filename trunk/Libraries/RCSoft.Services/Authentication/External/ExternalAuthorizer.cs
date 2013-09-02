@@ -12,23 +12,27 @@ namespace RCSoft.Services.Authentication.External
         private readonly IAuthenticationService _authenticationService;
         private readonly IOpenAuthenticationService _openAuthenticationService;
         private readonly ICustomerAuthenticationService _customerAuthenticationService;
+        private readonly ICustomerService _customerService;
         private readonly IWorkContext _workContext;
         private readonly CustomerSettings _customerSettings;
         private readonly ExternalAuthenticationSettings _externalAuthenticationSettings;
         private readonly LocalizationSettings _localizationSettings;
+        private readonly IWebHelper _webHelper;
         #endregion
 
         #region 构造函数
-        public ExternalAuthorizer(IAuthenticationService authenticationService, IOpenAuthenticationService openAuthenticationService, ICustomerAuthenticationService customerAuthenticationService, IWorkContext workContext, CustomerSettings customerSettings,
-            ExternalAuthenticationSettings externalAuthenticationSettings, LocalizationSettings localizationSettings)
+        public ExternalAuthorizer(IAuthenticationService authenticationService, IOpenAuthenticationService openAuthenticationService, ICustomerAuthenticationService customerAuthenticationService, ICustomerService customerService, IWorkContext workContext, CustomerSettings customerSettings,
+            ExternalAuthenticationSettings externalAuthenticationSettings, LocalizationSettings localizationSettings,IWebHelper webHelper)
         {
             this._authenticationService = authenticationService;
             this._openAuthenticationService = openAuthenticationService;
             this._customerAuthenticationService = customerAuthenticationService;
+            this._customerService = customerService;
             this._workContext = workContext;
             this._customerSettings = customerSettings;
             this._externalAuthenticationSettings = externalAuthenticationSettings; ;
             this._localizationSettings = localizationSettings;
+            this._webHelper = webHelper;
         }
         #endregion
 
@@ -58,15 +62,20 @@ namespace RCSoft.Services.Authentication.External
             }
             if (AccountDoesNotExistAndUserIsNotLoggedOn(userFound, userLoggedIn))
             {
-                ExternalAuthorizerHelper.StroeParametersForRoundTrip(parameters);
-                //if()
+                //ExternalAuthorizerHelper.StroeParametersForRoundTrip(parameters);
+                //var currentCustomer = _workContext.CurrentCustomer;
+                var registerUser = new Customer() { Username = parameters.ExternalDisplayIdentifier, Active = true, Deleted = false, IsSystemAccount = false, LastIpAddress = _webHelper.GetCurrentIpAddress(), CreateOnDate = DateTime.Now };
+                _customerService.InsertCustomer(registerUser);
+                userFound = registerUser;
+                _openAuthenticationService.AssociateExternalAccountWithUser(userFound, parameters);
             }
-            return null;
+            _authenticationService.SignIn(userFound ?? userLoggedIn, false);
+            return new AuthorizationResult(OpenAuthenticationStatus.Authenticated);
         }
 
         private bool AccountDoesNotExistAndUserIsNotLoggedOn(Customer userFound, Customer userLoggedIn)
         {
-            throw new NotImplementedException();
+            return userFound == null && userLoggedIn == null;
         }
 
         private bool AccountIsAssignedToLoggedOnAccount(Customer userFound, Customer userLoggedIn)
