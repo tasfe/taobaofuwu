@@ -22,6 +22,10 @@ namespace RCSoft.Web
             return Mapper.Map<CategoryModel, Category>(model);
         }
 
+        public static Category ToEntity(this CategoryModel model, Category destination)
+        {
+            return Mapper.Map(model, destination);
+        }
         #endregion
 
         #region 用户/用户角色

@@ -44,7 +44,7 @@ namespace RCSoft.Web.Controllers
             if (_workContext.CurrentCustomer != null)
                 return RedirectToRoute("HomePage");
             var model = new LoginModel();
-            model.UsernameEnabled = false;
+            model.UsernameEnabled = _customerSettings.UsernameEnabled;
             model.DisplayCaptcha = false;
             return View(model);
         }
@@ -54,7 +54,7 @@ namespace RCSoft.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (model.UsernameEnabled ? string.IsNullOrWhiteSpace(model.Username) : string.IsNullOrWhiteSpace(model.Email))
+                if (_customerSettings.UsernameEnabled ? string.IsNullOrWhiteSpace(model.Username) : string.IsNullOrWhiteSpace(model.Email))
                 {
                     ModelState.AddModelError("", model.UsernameEnabled ? _localizationService.GetResource("Account.Login.Fields.UserName.Required") : _localizationService.GetResource("Account.Login.Fields.Email.Required"));
                 }
@@ -66,7 +66,7 @@ namespace RCSoft.Web.Controllers
                 {
                     if (_customerAuthenticationService.ValidateCustomer(_customerSettings.UsernameEnabled ? model.Username : model.Email, model.Password))
                     {
-                        var customer = model.UsernameEnabled ? _customerService.GetCustomerByUsername(model.Username) : _customerService.GetCustomerByEmail(model.Email);
+                        var customer = _customerSettings.UsernameEnabled ? _customerService.GetCustomerByUsername(model.Username) : _customerService.GetCustomerByEmail(model.Email);
                         _authenticationService.SignIn(customer, model.RememberMe);
                         if (!String.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                             return Redirect(returnUrl);
