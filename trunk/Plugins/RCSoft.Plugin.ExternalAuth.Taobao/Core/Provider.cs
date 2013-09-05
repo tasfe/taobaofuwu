@@ -8,7 +8,7 @@
         }
         public static string AccessTokenURL
         {
-            get { return "https://oauth.tbsandbox.com/Token"; }
+            get { return "https://oauth.tbsandbox.com/token"; }
         }
         public static string Authorize
         {

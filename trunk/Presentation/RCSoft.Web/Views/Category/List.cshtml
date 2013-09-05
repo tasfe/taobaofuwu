@@ -26,9 +26,9 @@
                             columns.Bound(c=> c.ParentCategoryName)
                                 .Title(T("Products.Catalog.Fileds.ParentCategory").Text)
                                 .Width(150);
-                            columns.Bound(c => c.PictureUrl)
-                                .Template(c => string.Format("<img width='150' height='120' src='{0}'>", c.PictureUrl)).Width(158)
-                                .HtmlAttributes(new { style = "text-align:center" });
+                            //columns.Bound(c => c.PictureUrl)
+                            //    .Template(c => string.Format("<img width='150' height='120' src='{0}'>", c.PictureUrl)).Width(158)
+                            //    .HtmlAttributes(new { style = "text-align:center" });
                             columns.Bound(c => c.DisplayOrder).Width(80);
                             columns.Bound(c => c.IsDeleted).Width(80).Template(c => c.IsDeleted ? "是" : "否");
                             columns.Bound(c => c.Description).Width(250);

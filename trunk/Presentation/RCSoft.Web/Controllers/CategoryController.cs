@@ -104,6 +104,47 @@ namespace RCSoft.Web.Controllers
             }
             return View(model);
         }
+
+        public ActionResult Edit(int id)
+        {
+            var category = _categoryService.GetCategoryById(id);
+            if (category == null)
+                return RedirectToAction("List");
+            var model = category.ToModel();
+            model.ParentCategories = new List<DropDownItem> { new DropDownItem { Text = "[根目录]", Value = "0" } };
+            if (model.ParentCategoryId > 0)
+            {
+                var parentCategroy = _categoryService.GetCategoryById(model.ParentCategoryId);
+                if (parentCategroy != null)
+                    model.ParentCategories.Add(new DropDownItem { Text = parentCategroy.Name, Value = parentCategroy.Id.ToString() });
+                else
+                    model.ParentCategoryId = 0;
+            }
+            return View(model);
+        }
+
+        [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
+        public ActionResult Edit(CategoryModel model, bool continueEditing)
+        {
+            if (ModelState.IsValid)
+            {
+                var categoryModel = _categoryService.GetCategoryById(model.Id);
+                if (categoryModel == null)
+                    return null;
+                try
+                {
+                    categoryModel = model.ToEntity(categoryModel);
+                    _categoryService.UpdateCategory(categoryModel);
+                    return continueEditing ? RedirectToAction("Edit", categoryModel.Id) : RedirectToAction("List");
+                }
+                catch (Exception exc)
+                {
+                    ErrorNotifacation(exc);
+                    return RedirectToAction("Edit", new { id = categoryModel.Id });
+                }
+            }
+            return View(model);
+        }
         #endregion
     }
 }

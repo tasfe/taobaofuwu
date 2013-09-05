@@ -62,7 +62,7 @@ namespace RCSoft.Services.Products
                 query = query.Where(c => c.IsDeleted);
             if (!string.IsNullOrWhiteSpace(categoryName))
                 query = query.Where(c => c.Name.Contains(categoryName));
-            query = query.OrderBy(c => c.DisplayOrder);
+            query = query.OrderBy(c => c.ParentCategoryId).ThenBy(c => c.DisplayOrder);
 
             return query.ToList();
         }
@@ -91,7 +91,7 @@ namespace RCSoft.Services.Products
             bool showDeleted = false)
         {
             var query = _categoryRepository.Table;
-            if (!showDeleted)
+            if (showDeleted)
                 query = query.Where(c => c.IsDeleted);
             query = query.Where(c => c.ParentCategoryId == parentCategoryId);
             query = query.OrderBy(c => c.DisplayOrder);
