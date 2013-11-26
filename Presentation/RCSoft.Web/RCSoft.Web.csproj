@@ -345,6 +345,8 @@
     <Content Include="Content\images\login-end.png" />
     <Content Include="Content\images\login-head.png" />
     <Content Include="Content\images\login-mid.png" />
+    <Content Include="Content\images\portal0.gif" />
+    <Content Include="Content\images\process.png" />
     <Content Include="Content\images\taobao.png" />
     <Content Include="Content\images\user_login_name.gif" />
     <Content Include="Content\images\user_login_password.gif" />

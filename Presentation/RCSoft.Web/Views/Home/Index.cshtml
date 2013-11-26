@@ -1,5 +1,17 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = @T("Admin.Dashboard").Text;
 }
 
-<h2>Index</h2>
+<table class="dashboard">
+    <tr>
+        <td>
+            <div class="section-header">
+                <div class="title">
+                    <img src="@Url.Content("~/Content/images/process.png")" alt="@T("Admin.Dashboard.process.Hint")" />
+                    @T("Admin.Dashboard.process")
+                </div>
+            </div>
+            <img src="/Content/images/portal0.gif" />
+        </td>
+    </tr>
+</table>
