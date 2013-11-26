@@ -152,3 +152,6 @@ body .t-button{font-weight:400;color:inherit!important;text-decoration:none;}
 
 /* MASTER CONTENT */
 .content .cph{padding:20px 15px 5px;}
+
+/*DashBoard*/
+.dashboard{margin-top: 15px;border: solid 1px #ccc;width: 50%;border-collapse: collapse;}
